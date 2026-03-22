@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "howItWorks": "How it works",
+    "business": "For Business",
+    "about": "About",
+    "download": "Download"
+  },
+  "hero": {
+    "badge": "Tirana · Albania",
+    "headline1": "No more",
+    "headline2": "driving in circles.",
+    "subtitle": "Your time matters. Find parking instantly with Parko Tani — the smart parking app for Tirana.",
+    "cta": "Download Free",
+    "ctaSecondary": "Learn more",
+    "tagline": "Parko Tani — end the parking drama."
+  },
+  "stats": {
+    "badge": "Live · Available · Now",
+    "title": "Everything in real time",
+    "subtitle": "See every open parking spot across Tirana — updated live, before you even leave home.",
+    "spots": "500+",
+    "spotsLabel": "mapped parking spots",
+    "time": "30s",
+    "timeLabel": "average reservation time",
+    "availability": "24/7",
+    "availabilityLabel": "availability",
+    "free": "5 FREE",
+    "limited": "2 FREE"
+  },
+  "howItWorks": {
+    "eyebrow": "How it works",
+    "title": "Park smarter",
+    "titleAccent": "in 3 steps",
+    "step1Title": "Open the map",
+    "step1Body": "See all available parking spots near you across Tirana, updated in real time with color-coded availability.",
+    "step2Title": "Reserve your spot",
+    "step2Body": "Tap any parking spot and reserve it instantly. No queues, no stress.",
+    "step3Title": "Park & go",
+    "step3Body": "Navigate directly to your spot and park with confidence. It's yours."
+  },
+  "value": {
+    "eyebrow": "Why Parko Tani?",
+    "title": "Save time.",
+    "titleAccent": "Reduce stress.",
+    "items": [
+      {
+        "title": "Real-time availability",
+        "body": "See instantly where parking spots are free, without wasting time driving around."
+      },
+      {
+        "title": "Zero wasted time",
+        "body": "No more circling streets. Find and reserve your spot before you even leave."
+      },
+      {
+        "title": "Less traffic, less stress",
+        "body": "When everyone parks faster, the city moves better. You save time, the city saves air."
+      }
+    ]
+  },
+  "business": {
+    "eyebrow": "For businesses",
+    "title": "Earn from",
+    "titleAccent": "your parking",
+    "subtitle": "Have parking spots? List them on Parko Tani and start earning.",
+    "features": [
+      {
+        "title": "List parking spots",
+        "body": "Add your spots to the map and manage them easily."
+      },
+      {
+        "title": "Accept / Reject reservations",
+        "body": "Full control over who parks at your location."
+      },
+      {
+        "title": "Earn income",
+        "body": "Turn your parking spots into a revenue stream."
+      }
+    ],
+    "cta": "Become a partner"
+  },
+  "about": {
+    "eyebrow": "About us",
+    "title": "Built for",
+    "titleAccent": "Tirana",
+    "body1": "Parko Tani was born from a simple problem: every day, hundreds of drivers in Tirana waste time searching for parking. We built this app to end that drama.",
+    "body2": "Our mission is simple — make parking in Tirana fast, easy, and stress-free. Let's change how the city moves!",
+    "mission": "Our mission: A city where finding a parking spot is never a problem, because you've already found it."
+  },
+  "download": {
+    "eyebrow": "Download now",
+    "title": "Ready to",
+    "titleAccent": "park?",
+    "subtitle": "Download Parko Tani for free and find your parking spot in seconds.",
+    "appStore": "App Store",
+    "playStore": "Google Play",
+    "comingSoon": "Coming soon"
+  },
+  "footer": {
+    "description": "The smart parking app for Tirana. Find, reserve, and park — instantly.",
+    "links": "Links",
+    "legal": "Legal",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "rights": "All rights reserved."
+  }
+}

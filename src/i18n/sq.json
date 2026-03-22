@@ -1,0 +1,109 @@
+{
+  "nav": {
+    "home": "Kryefaqja",
+    "features": "Veçoritë",
+    "howItWorks": "Si funksionon",
+    "business": "Për bizneset",
+    "about": "Rreth nesh",
+    "download": "Shkarko"
+  },
+  "hero": {
+    "badge": "Tirana · Shqipëri",
+    "headline1": "S'ka më",
+    "headline2": "xhiro kot.",
+    "subtitle": "Koha jote vlen. Gjej parkim menjëherë me Parko Tani — aplikacioni i zgjuar për parkimin në Tiranë.",
+    "cta": "Shkarko Falas",
+    "ctaSecondary": "Mëso më shumë",
+    "tagline": "Parko Tani — jepi fund dramës së parkimit."
+  },
+  "stats": {
+    "badge": "Live · Disponibël · Tani",
+    "title": "Gjithçka në kohë reale",
+    "subtitle": "Shiko çdo vend parkimi të lirë në Tiranë — i përditësuar live, para se të dalësh nga shtëpia.",
+    "spots": "500+",
+    "spotsLabel": "vende parkimi të mapuara",
+    "time": "30s",
+    "timeLabel": "kohë mesatare rezervimi",
+    "availability": "24/7",
+    "availabilityLabel": "disponueshmëri",
+    "free": "5 VENDE",
+    "limited": "2 VENDE"
+  },
+  "howItWorks": {
+    "eyebrow": "Si funksionon",
+    "title": "Parko me zgjuarsi",
+    "titleAccent": "në 3 hapa",
+    "step1Title": "Hap hartën",
+    "step1Body": "Shiko të gjitha vendet e parkimit pranë teje në Tiranë, të përditësuara në kohë reale me ngjyra sipas disponueshmërisë.",
+    "step2Title": "Rezervo vendin",
+    "step2Body": "Kliko mbi çdo vend parkimi dhe rezervoje menjëherë. Pa radhë, pa stres.",
+    "step3Title": "Parko & shko",
+    "step3Body": "Navigo direkt te vendi yt dhe parko me siguri. Është i yti."
+  },
+  "value": {
+    "eyebrow": "Pse Parko Tani?",
+    "title": "Kurse kohë.",
+    "titleAccent": "Ul stresin.",
+    "items": [
+      {
+        "title": "Disponueshmëri në kohë reale",
+        "body": "Shiko menjëherë ku ka vende të lira parkimi, pa humbur kohë duke kërkuar."
+      },
+      {
+        "title": "Zero kohë e humbur",
+        "body": "Mos e kthe parkimin në sport ekstrem, rezervo dhe mbaroi muhabeti."
+      },
+      {
+        "title": "Më pak trafik, më pak stres",
+        "body": "Kur të gjithë parkojnë shpejt, qyteti lëviz më mirë. Ti kurshen kohë, qyteti kursen ajër."
+      }
+    ]
+  },
+  "business": {
+    "eyebrow": "Për bizneset",
+    "title": "Fito nga",
+    "titleAccent": "parkimi yt",
+    "subtitle": "Ke vende parkimi? Lista ato në Parko Tani dhe fillo të fitosh.",
+    "features": [
+      {
+        "title": "Listo vendet e parkimit",
+        "body": "Shto vendet e tua në hartë dhe menaxho ato lehtësisht."
+      },
+      {
+        "title": "Prano / Refuzo rezervimet",
+        "body": "Kontrollo plotësisht kush parkon te ti."
+      },
+      {
+        "title": "Fito të ardhura",
+        "body": "Kthe vendet e parkimit në burim fitimi."
+      }
+    ],
+    "cta": "Bëhu partner"
+  },
+  "about": {
+    "eyebrow": "Rreth nesh",
+    "title": "Ndërtuar për",
+    "titleAccent": "Tiranën",
+    "body1": "Parko Tani lindi nga një problem i thjeshtë: çdo ditë, mijëra shoferë në Tiranë humbasin kohë duke kërkuar parkim. Ne e ndërtuam këtë aplikacion për t'i dhënë fund kësaj drame.",
+    "body2": "Misioni ynë është i thjeshtë — ta bëjmë parkimin në Tiranë të shpejtë, të lehtë dhe pa stres. Le të ndryshojmë mënyrën si qyteti ynë lëviz!",
+    "mission": "Misioni ynë: Një qytet ku nuk humbet kohë duke kërkuar parkim, sepse e ke gjetur tashmë."
+  },
+  "download": {
+    "eyebrow": "Shkarko tani",
+    "title": "Gati për të",
+    "titleAccent": "parkuar?",
+    "subtitle": "Shkarko Parko Tani falas dhe gjej parkimin tënd në sekonda.",
+    "appStore": "App Store",
+    "playStore": "Google Play",
+    "comingSoon": "Së shpejti"
+  },
+  "footer": {
+    "description": "Aplikacioni i zgjuar për parkimin në Tiranë. Gjej, rezervo dhe parko — menjëherë.",
+    "links": "Lidhje",
+    "legal": "Ligjore",
+    "contact": "Kontakt",
+    "privacy": "Politika e Privatësisë",
+    "terms": "Kushtet e Përdorimit",
+    "rights": "Të gjitha të drejtat e rezervuara."
+  }
+}
