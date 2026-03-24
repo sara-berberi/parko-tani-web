@@ -39,86 +39,228 @@ function AnimatedCounter({ value, suffix = "" }: { value: string; suffix?: strin
   );
 }
 
-function InteractiveMap({ freeLabel, limitedLabel }: { freeLabel: string; limitedLabel: string }) {
+function Pin({ cx, cy, r = 11, opacity = 1, pulse = false }: { cx: number; cy: number; r?: number; opacity?: number; pulse?: boolean }) {
+  const tip = cy + r * 2.2;
+  return (
+    <g opacity={opacity}>
+      {pulse && <>
+        <circle cx={cx} cy={cy} r={r + 4} fill="none" stroke="rgba(37,99,168,0.12)" strokeWidth="1">
+          <animate attributeName="r" from={r} to={r + 18} dur="2s" repeatCount="indefinite" />
+          <animate attributeName="opacity" from="0.4" to="0" dur="2s" repeatCount="indefinite" />
+        </circle>
+        <circle cx={cx} cy={cy} r={r + 2} fill="none" stroke="rgba(37,99,168,0.09)" strokeWidth="1">
+          <animate attributeName="r" from={r - 4} to={r + 12} dur="2s" begin="0.5s" repeatCount="indefinite" />
+          <animate attributeName="opacity" from="0.5" to="0" dur="2s" begin="0.5s" repeatCount="indefinite" />
+        </circle>
+      </>}
+      <path
+        d={`M${cx + r * 1.18} ${cy} C${cx + r * 1.18} ${cy - r * 1.1} ${cx + r * 0.5} ${cy - r * 1.9} ${cx} ${cy - r * 1.9} C${cx - r * 0.5} ${cy - r * 1.9} ${cx - r * 1.18} ${cy - r * 1.1} ${cx - r * 1.18} ${cy} C${cx - r * 1.18} ${cy + r * 1.1} ${cx} ${tip} ${cx} ${tip} C${cx} ${tip} ${cx + r * 1.18} ${cy + r * 1.1} ${cx + r * 1.18} ${cy}Z`}
+        fill="url(#pinGrad)"
+        filter="url(#pinShadowSm)"
+      />
+      <circle cx={cx} cy={cy - r * 0.4} r={r * 0.55} fill="white" />
+      <circle cx={cx} cy={cy - r * 0.4} r={r * 0.25} fill="#2563a8" />
+      <ellipse cx={cx} cy={tip + 3} rx={r * 0.6} ry={r * 0.18} fill="rgba(37,99,168,0.1)" />
+    </g>
+  );
+}
+
+function InteractiveMap({ freeLabel, limitedLabel, threeLabel, oneLabel, fullLabel }: { freeLabel: string; limitedLabel: string; threeLabel: string; oneLabel: string; fullLabel: string }) {
   return (
     <div className="relative w-full aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-brand-100 to-brand-50 border border-brand-200/40 shadow-card">
-      {/* Subtle inner glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-brand-200/20" />
 
       <svg className="relative w-full h-full" viewBox="0 0 540 540" fill="none">
-        {/* Roads */}
-        <line x1="0" y1="180" x2="540" y2="180" stroke="#c4d8ee" strokeWidth="16" />
-        <line x1="0" y1="180" x2="540" y2="180" stroke="white" strokeWidth="2" strokeDasharray="14,10" strokeOpacity="0.8" />
-        <line x1="0" y1="360" x2="540" y2="360" stroke="#c4d8ee" strokeWidth="16" />
-        <line x1="0" y1="360" x2="540" y2="360" stroke="white" strokeWidth="2" strokeDasharray="14,10" strokeOpacity="0.8" />
-        <line x1="180" y1="0" x2="180" y2="540" stroke="#c4d8ee" strokeWidth="16" />
-        <line x1="180" y1="0" x2="180" y2="540" stroke="white" strokeWidth="2" strokeDasharray="14,10" strokeOpacity="0.8" />
-        <line x1="380" y1="0" x2="380" y2="540" stroke="#c4d8ee" strokeWidth="16" />
-
-        {/* Blocks */}
-        <rect x="10" y="10" width="158" height="158" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-        <rect x="198" y="10" width="170" height="158" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-        <rect x="392" y="10" width="138" height="158" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-        <rect x="10" y="198" width="158" height="150" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-        <rect x="198" y="198" width="170" height="150" rx="10" fill="#dff0df" stroke="#c8e2cc" strokeWidth="2" />
-        <rect x="392" y="198" width="138" height="150" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-        <rect x="10" y="374" width="158" height="156" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-        <rect x="198" y="374" width="170" height="156" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-        <rect x="392" y="374" width="138" height="156" rx="10" fill="#e8f0f9" stroke="white" strokeWidth="2" />
-
-        {/* P zone markers */}
-        <text x="62" y="102" fontFamily="sans-serif" fontWeight="800" fontSize="30" fill="rgba(37,99,168,0.15)">P</text>
-        <text x="430" y="290" fontFamily="sans-serif" fontWeight="800" fontSize="30" fill="rgba(37,99,168,0.15)">P</text>
-        <text x="62" y="468" fontFamily="sans-serif" fontWeight="800" fontSize="30" fill="rgba(37,99,168,0.15)">P</text>
-
-        {/* Pulse rings */}
-        <circle cx="283" cy="273" r="50" fill="none" stroke="rgba(37,99,168,0.06)" strokeWidth="1">
-          <animate attributeName="r" from="30" to="60" dur="2s" repeatCount="indefinite" />
-          <animate attributeName="opacity" from="0.3" to="0" dur="2s" repeatCount="indefinite" />
-        </circle>
-        <circle cx="283" cy="273" r="35" fill="none" stroke="rgba(37,99,168,0.1)" strokeWidth="1">
-          <animate attributeName="r" from="20" to="45" dur="2s" begin="0.5s" repeatCount="indefinite" />
-          <animate attributeName="opacity" from="0.4" to="0" dur="2s" begin="0.5s" repeatCount="indefinite" />
-        </circle>
-
-        {/* Main active pin */}
         <defs>
           <linearGradient id="pinGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#3577d4" />
             <stop offset="100%" stopColor="#1848a0" />
           </linearGradient>
-          <filter id="pinShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#2563a8" floodOpacity="0.4" />
+          <filter id="pinShadowSm" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#2563a8" floodOpacity="0.35" />
           </filter>
         </defs>
-        <g filter="url(#pinShadow)">
-          <path d="M320 290 C320 260 298 240 270 240 C242 240 220 260 220 290 C220 320 270 358 270 358 C270 358 320 320 320 290Z" fill="url(#pinGrad)" />
-          <circle cx="270" cy="283" r="18" fill="white" />
-          <circle cx="270" cy="283" r="8" fill="#2563a8" />
-        </g>
-        <ellipse cx="270" cy="365" rx="16" ry="5" fill="rgba(37,99,168,0.12)" />
 
-        {/* Secondary pins */}
-        <g opacity="0.6">
-          <path d="M118 105 C118 90 108 80 95 80 C82 80 72 90 72 105 C72 120 95 136 95 136 C95 136 118 120 118 105Z" fill="#2563a8" />
-          <circle cx="95" cy="102" r="9" fill="white" />
-        </g>
-        <g opacity="0.4">
-          <path d="M460 450 C460 438 452 428 443 428 C434 428 426 438 426 450 C426 462 443 472 443 472 C443 472 460 462 460 450Z" fill="#2563a8" />
-          <circle cx="443" cy="448" r="7" fill="white" />
-        </g>
+        {/* ── Roads ── */}
+        {/* Rr. e Kavajës — diagonal */}
+        <line x1="0" y1="430" x2="540" y2="90" stroke="#c4d8ee" strokeWidth="17" />
+        <line x1="0" y1="430" x2="540" y2="90" stroke="white" strokeWidth="2" strokeDasharray="16,12" strokeOpacity="0.9" />
+        {/* Bulevardi Zogu I — horizontal */}
+        <line x1="0" y1="255" x2="540" y2="255" stroke="#c4d8ee" strokeWidth="14" />
+        <line x1="0" y1="255" x2="540" y2="255" stroke="white" strokeWidth="2" strokeDasharray="14,10" strokeOpacity="0.8" />
+        {/* Bl. Bajram Curri — vertical */}
+        <line x1="172" y1="0" x2="172" y2="540" stroke="#c4d8ee" strokeWidth="13" />
+        <line x1="172" y1="0" x2="172" y2="540" stroke="white" strokeWidth="2" strokeDasharray="14,10" strokeOpacity="0.8" />
+        {/* Rr. Abdyl Frashëri — vertical right */}
+        <line x1="385" y1="0" x2="385" y2="540" stroke="#c4d8ee" strokeWidth="11" />
+        <line x1="385" y1="0" x2="385" y2="540" stroke="white" strokeWidth="2" strokeDasharray="12,9" strokeOpacity="0.7" />
+        {/* Rr. e Durrësit — horizontal lower */}
+        <line x1="0" y1="395" x2="540" y2="395" stroke="#c4d8ee" strokeWidth="11" />
+        <line x1="0" y1="395" x2="540" y2="395" stroke="white" strokeWidth="2" strokeDasharray="12,9" strokeOpacity="0.7" />
+        {/* Rr. Myslym Shyri — horizontal upper */}
+        <line x1="0" y1="138" x2="540" y2="138" stroke="#c4d8ee" strokeWidth="9" />
+        <line x1="0" y1="138" x2="540" y2="138" stroke="white" strokeWidth="1.5" strokeDasharray="10,8" strokeOpacity="0.7" />
+        {/* Rr. Ismail Qemali — vertical center-right */}
+        <line x1="290" y1="0" x2="290" y2="540" stroke="#c4d8ee" strokeWidth="9" />
+        <line x1="290" y1="0" x2="290" y2="540" stroke="white" strokeWidth="1.5" strokeDasharray="10,8" strokeOpacity="0.7" />
+        {/* Rr. Pjetër Bogdani — horizontal mid-lower */}
+        <line x1="0" y1="330" x2="540" y2="330" stroke="#c4d8ee" strokeWidth="8" />
+        <line x1="0" y1="330" x2="540" y2="330" stroke="white" strokeWidth="1.5" strokeDasharray="10,8" strokeOpacity="0.6" />
+        {/* Rr. Tefta Tashko — vertical far-left */}
+        <line x1="68" y1="0" x2="68" y2="540" stroke="#c4d8ee" strokeWidth="7" />
+        {/* Rr. Themistokli Gërmenji — vertical far-right */}
+        <line x1="480" y1="0" x2="480" y2="540" stroke="#c4d8ee" strokeWidth="7" />
+        {/* Rr. Muhamet Gjollesha — horizontal top */}
+        <line x1="0" y1="52" x2="540" y2="52" stroke="#c4d8ee" strokeWidth="7" />
+        {/* Rr. Sami Frashëri — horizontal bottom */}
+        <line x1="0" y1="480" x2="540" y2="480" stroke="#c4d8ee" strokeWidth="7" />
+
+        {/* ── Blocks ── */}
+        <rect x="10"  y="10"  width="46"  height="116" rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="80"  y="10"  width="80"  height="116" rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="184" y="10"  width="94"  height="116" rx="6" fill="#edf4fb" stroke="#d8e8f4" strokeWidth="1.5" />
+        <rect x="300" y="10"  width="73"  height="116" rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="394" y="10"  width="74"  height="116" rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="494" y="10"  width="36"  height="116" rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+
+        <rect x="10"  y="150" width="46"  height="93"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="80"  y="150" width="80"  height="93"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="184" y="150" width="94"  height="93"  rx="6" fill="#dff0e8" stroke="#c8e2cc" strokeWidth="1.5" />
+        <rect x="300" y="150" width="73"  height="93"  rx="6" fill="#dff0e8" stroke="#c8e2cc" strokeWidth="1.5" />
+        <rect x="394" y="150" width="74"  height="93"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="494" y="150" width="36"  height="93"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+
+        <rect x="10"  y="267" width="46"  height="51"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="80"  y="267" width="80"  height="51"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="184" y="267" width="94"  height="51"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="300" y="267" width="73"  height="51"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="394" y="267" width="74"  height="51"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="494" y="267" width="36"  height="51"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+
+        <rect x="10"  y="342" width="46"  height="41"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="80"  y="342" width="80"  height="41"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="184" y="342" width="94"  height="41"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="300" y="342" width="73"  height="41"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="394" y="342" width="74"  height="41"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="494" y="342" width="36"  height="41"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+
+        <rect x="10"  y="407" width="46"  height="61"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="80"  y="407" width="80"  height="61"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="184" y="407" width="94"  height="61"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="300" y="407" width="73"  height="61"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="394" y="407" width="74"  height="61"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="494" y="407" width="36"  height="61"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+
+        <rect x="10"  y="492" width="46"  height="38"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="80"  y="492" width="80"  height="38"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="184" y="492" width="94"  height="38"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="300" y="492" width="73"  height="38"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="394" y="492" width="74"  height="38"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+        <rect x="494" y="492" width="36"  height="38"  rx="6" fill="#e8f0f9" stroke="white" strokeWidth="1.5" />
+
+        {/* ── Street name labels ── */}
+        <text x="270" y="248" textAnchor="middle" fontFamily="sans-serif" fontSize="7.5" fontWeight="600" fill="rgba(37,99,168,0.4)" letterSpacing="0.4">Bulevardi Zogu I</text>
+        <text x="270" y="388" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="600" fill="rgba(37,99,168,0.32)" letterSpacing="0.3">Rruga e Durrësit</text>
+        <text x="270" y="323" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="600" fill="rgba(37,99,168,0.28)" letterSpacing="0.3">Rr. Pjetër Bogdani</text>
+        <text x="270" y="131" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="600" fill="rgba(37,99,168,0.28)" letterSpacing="0.3">Rr. Myslym Shyri</text>
+        <text x="270" y="45"  textAnchor="middle" fontFamily="sans-serif" fontSize="6.5" fontWeight="600" fill="rgba(37,99,168,0.22)" letterSpacing="0.3">Rr. Muhamet Gjollesha</text>
+        <text x="172" y="535" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="600" fill="rgba(37,99,168,0.32)" transform="rotate(-90 172 535)" letterSpacing="0.3">Bl. Bajram Curri</text>
+        <text x="385" y="535" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="600" fill="rgba(37,99,168,0.28)" transform="rotate(-90 385 535)" letterSpacing="0.3">Rr. Abdyl Frashëri</text>
+        <text x="290" y="535" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="600" fill="rgba(37,99,168,0.25)" transform="rotate(-90 290 535)" letterSpacing="0.3">Rr. Ismail Qemali</text>
+        <text x="68"  y="535" textAnchor="middle" fontFamily="sans-serif" fontSize="6.5" fontWeight="600" fill="rgba(37,99,168,0.22)" transform="rotate(-90 68 535)" letterSpacing="0.3">Rr. Tefta Tashko</text>
+        <text x="100" y="118" textAnchor="middle" fontFamily="sans-serif" fontSize="7" fontWeight="600" fill="rgba(37,99,168,0.28)" transform="rotate(-32 100 118)" letterSpacing="0.3">Rr. e Kavajës</text>
+
+        {/* ── Neighborhood labels ── */}
+        <text x="231" y="175" textAnchor="middle" fontFamily="sans-serif" fontSize="10" fontWeight="800" fill="rgba(37,99,168,0.16)" letterSpacing="1.2">BLLOKU</text>
+        <text x="231" y="65"  textAnchor="middle" fontFamily="sans-serif" fontSize="8.5" fontWeight="800" fill="rgba(37,99,168,0.13)" letterSpacing="0.8">SH. SKËNDERBEJ</text>
+        <text x="40"  y="108" textAnchor="middle" fontFamily="sans-serif" fontSize="7.5" fontWeight="700" fill="rgba(37,99,168,0.12)" letterSpacing="0.5">QENDRA</text>
+        <text x="437" y="80"  textAnchor="middle" fontFamily="sans-serif" fontSize="7.5" fontWeight="700" fill="rgba(37,99,168,0.11)" letterSpacing="0.5">PAZARI</text>
+        <text x="437" y="210" textAnchor="middle" fontFamily="sans-serif" fontSize="7"   fontWeight="700" fill="rgba(37,99,168,0.10)" letterSpacing="0.5">KOMUNA E PARISIT</text>
+        <text x="40"  y="370" textAnchor="middle" fontFamily="sans-serif" fontSize="7"   fontWeight="700" fill="rgba(37,99,168,0.10)" letterSpacing="0.4">SELVIA</text>
+        <text x="437" y="370" textAnchor="middle" fontFamily="sans-serif" fontSize="7"   fontWeight="700" fill="rgba(37,99,168,0.10)" letterSpacing="0.4">STADIUMI</text>
+        <text x="231" y="460" textAnchor="middle" fontFamily="sans-serif" fontSize="7"   fontWeight="700" fill="rgba(37,99,168,0.10)" letterSpacing="0.4">KOMBINAT</text>
+
+        {/* ── Pins ── */}
+        {/* Blloku — main, pulsing */}
+        <Pin cx={231} cy={192} r={13} pulse opacity={1} />
+        {/* Sheshi Skënderbej */}
+        <Pin cx={231} cy={72}  r={11} opacity={0.82} />
+        {/* Rr. Abdyl Frashëri / Komuna e Parisit */}
+        <Pin cx={437} cy={195} r={10} opacity={0.72} />
+        {/* Rr. e Kavajës mid */}
+        <Pin cx={112} cy={318} r={9}  opacity={0.60} />
+        {/* Pazari i Ri */}
+        <Pin cx={437} cy={68}  r={9}  opacity={0.58} />
+        {/* Rr. Ismail Qemali / Zogu I crossing */}
+        <Pin cx={290} cy={255} r={9}  opacity={0.65} />
+        {/* Rr. Myslym Shyri / Bajram Curri */}
+        <Pin cx={172} cy={138} r={8}  opacity={0.52} />
+        {/* Rr. Durrësit west */}
+        <Pin cx={40}  cy={395} r={8}  opacity={0.45} />
+        {/* Rr. Durrësit east */}
+        <Pin cx={480} cy={395} r={8}  opacity={0.45} />
+        {/* Selvia area */}
+        <Pin cx={40}  cy={355} r={7}  opacity={0.38} />
+        {/* Stadiumi */}
+        <Pin cx={480} cy={310} r={7}  opacity={0.38} />
+        {/* Rr. Pjetër Bogdani mid */}
+        <Pin cx={340} cy={330} r={7}  opacity={0.40} />
+        {/* Kombinat / lower center */}
+        <Pin cx={231} cy={450} r={7}  opacity={0.32} />
+        {/* Far top-left corner */}
+        <Pin cx={40}  cy={40}  r={6}  opacity={0.28} />
+        {/* Far bottom-right */}
+        <Pin cx={510} cy={510} r={6}  opacity={0.25} />
       </svg>
 
-      {/* HTML availability badges — proper font rendering */}
-      <div className="absolute top-[48%] left-[36%] -translate-x-1/2 -translate-y-1/2">
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-accent-green text-white text-[11px] font-bold tracking-wider uppercase shadow-md shadow-accent-green/30 whitespace-nowrap">
-          {freeLabel}
-        </span>
+      {/* ── Blloku badge — green ── */}
+      <div className="absolute" style={{ top:"40%", left:"46%", transform:"translate(-50%,-50%)" }}>
+        <div className="flex flex-col items-start gap-0.5">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-green text-white text-[11px] font-bold shadow-md shadow-accent-green/30 whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />{freeLabel}
+          </span>
+          <span className="ml-1 text-[10px] font-semibold text-brand-500">Blloku</span>
+        </div>
       </div>
-      <div className="absolute top-[79%] left-[76%] -translate-x-1/2 -translate-y-1/2">
-        <span className="inline-flex items-center px-3 py-1 rounded-full bg-accent-amber text-white text-[11px] font-bold tracking-wider uppercase shadow-md shadow-accent-amber/30 whitespace-nowrap">
-          {limitedLabel}
-        </span>
+
+      {/* ── Sheshi Skënderbej badge — amber ── */}
+      <div className="absolute" style={{ top:"20%", left:"50%", transform:"translate(-50%,-50%)" }}>
+        <div className="flex flex-col items-start gap-0.5">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-accent-amber text-white text-[11px] font-bold shadow-md shadow-accent-amber/30 whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/80" />{limitedLabel}
+          </span>
+          <span className="ml-1 text-[10px] font-semibold text-brand-500">Sh. Skënderbej</span>
+        </div>
+      </div>
+
+      {/* ── Rr. e Kavajës badge — red ── */}
+      <div className="absolute" style={{ top:"62%", left:"22%", transform:"translate(-50%,-50%)" }}>
+        <div className="flex flex-col items-start gap-0.5">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-400 text-white text-[11px] font-bold shadow-md shadow-red-400/30 whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-white/80" />{fullLabel}
+          </span>
+          <span className="ml-1 text-[10px] font-semibold text-brand-500">Rr. e Kavajës</span>
+        </div>
+      </div>
+
+      {/* ── Komuna e Parisit badge — green ── */}
+      <div className="absolute" style={{ top:"42%", left:"84%", transform:"translate(-50%,-50%)" }}>
+        <div className="flex flex-col items-start gap-0.5">
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-green text-white text-[10px] font-bold shadow-sm shadow-accent-green/30 whitespace-nowrap">
+            <span className="w-1 h-1 rounded-full bg-white/80" />{threeLabel}
+          </span>
+          <span className="ml-0.5 text-[9px] font-semibold text-brand-400">Komuna e Parisit</span>
+        </div>
+      </div>
+
+      {/* ── Pazari i Ri badge — amber ── */}
+      <div className="absolute" style={{ top:"16%", left:"84%", transform:"translate(-50%,-50%)" }}>
+        <div className="flex flex-col items-start gap-0.5">
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-accent-amber text-white text-[10px] font-bold shadow-sm shadow-accent-amber/30 whitespace-nowrap">
+            <span className="w-1 h-1 rounded-full bg-white/80" />{oneLabel}
+          </span>
+          <span className="ml-0.5 text-[9px] font-semibold text-brand-400">Pazari i Ri</span>
+        </div>
       </div>
     </div>
   );
@@ -220,7 +362,7 @@ export function LiveStats() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <InteractiveMap freeLabel={t.stats.free} limitedLabel={t.stats.limited} />
+            <InteractiveMap freeLabel={t.stats.free} limitedLabel={t.stats.limited} threeLabel={t.stats.three} oneLabel={t.stats.one} fullLabel={t.stats.full} />
           </motion.div>
         </div>
       </div>

@@ -18,61 +18,195 @@ const icons = [
   </svg>,
 ];
 
-function DashboardMockup() {
+function PhoneMockup() {
   return (
-    <div className="relative rounded-3xl bg-brand-900 overflow-hidden border border-white/[0.06] noise-overlay"
-      style={{ boxShadow: "0 32px 64px -16px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03)" }}
+    /* Outer phone shell */
+    <div
+      className="relative mx-auto"
+      style={{ width: 300, filter: "drop-shadow(0 40px 80px rgba(15,34,64,0.22)) drop-shadow(0 8px 24px rgba(37,99,168,0.18))" }}
     >
-      {/* Top bar */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.05]">
-        <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-red-500/60" />
-          <div className="w-3 h-3 rounded-full bg-yellow-500/60" />
-          <div className="w-3 h-3 rounded-full bg-green-500/60" />
+      {/* Phone border */}
+      <div
+        className="relative rounded-[3rem] overflow-hidden border-[3px] border-white/60"
+        style={{ background: "#dce8f5", boxShadow: "inset 0 2px 8px rgba(255,255,255,0.8), inset 0 -2px 6px rgba(15,34,64,0.08)" }}
+      >
+        {/* Notch */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-white/60 rounded-b-2xl z-20 flex items-center justify-center">
+          <div className="w-10 h-1.5 bg-white/80 rounded-full" />
         </div>
-        <span className="text-[11px] font-medium text-white/20 tracking-wide">dashboard.parkotani.al</span>
-        <div className="w-12" />
-      </div>
 
-      <div className="p-5 md:p-6 space-y-4">
-        {/* Glow */}
-        <div className="absolute -top-20 -left-20 w-60 h-60 bg-brand-500/15 rounded-full blur-[60px]" />
-
-        {/* Stats row */}
-        <div className="relative grid grid-cols-3 gap-3">
+        {/* Map scene background */}
+        <div className="relative overflow-hidden" style={{ height: 560, background: "linear-gradient(155deg,#eaf3fc,#d4e6f4 50%,#c6dced)" }}>
+          {/* Roads */}
+          <div className="absolute left-0 right-0 bg-[#c0d5e6]" style={{ top: "19%", height: 14, borderTop: "1px solid rgba(255,255,255,0.55)", borderBottom: "1px solid rgba(255,255,255,0.55)" }} />
+          <div className="absolute left-0 right-0 bg-[#c0d5e6]" style={{ top: "51%", height: 11, borderTop: "1px solid rgba(255,255,255,0.55)", borderBottom: "1px solid rgba(255,255,255,0.55)" }} />
+          <div className="absolute top-0 bottom-0 bg-[#c0d5e6]" style={{ left: "32%", width: 12, borderLeft: "1px solid rgba(255,255,255,0.55)", borderRight: "1px solid rgba(255,255,255,0.55)" }} />
+          <div className="absolute top-0 bottom-0 bg-[#c0d5e6]" style={{ left: "68%", width: 10, borderLeft: "1px solid rgba(255,255,255,0.55)", borderRight: "1px solid rgba(255,255,255,0.55)" }} />
+          {/* Blocks */}
           {[
-            { val: "12", label: "Spots", color: "text-accent-blue" },
-            { val: "8", label: "Active", color: "text-accent-green" },
-            { val: "24", label: "Today", color: "text-accent-amber" },
-          ].map((s) => (
-            <div key={s.label} className="text-center p-4 rounded-2xl bg-white/[0.03] border border-white/[0.05]">
-              <p className={`font-display font-extrabold text-2xl ${s.color}`}>{s.val}</p>
-              <p className="text-[11px] text-white/25 mt-1 font-medium">{s.label}</p>
+            { top:"2%",  left:"34%", w:"32%", h:"15%" },
+            { top:"24%", left:"0%",  w:"30%", h:"25%" },
+            { top:"24%", left:"34%", w:"32%", h:"25%" },
+            { top:"24%", left:"70%", w:"30%", h:"25%" },
+            { top:"56%", left:"0%",  w:"30%", h:"18%" },
+            { top:"56%", left:"34%", w:"32%", h:"18%" },
+            { top:"56%", left:"70%", w:"30%", h:"18%" },
+          ].map((b, i) => (
+            <div key={i} className="absolute rounded" style={{ top:b.top, left:b.left, width:b.w, height:b.h, background:"rgba(255,255,255,0.28)", border:"1px solid rgba(255,255,255,0.52)" }} />
+          ))}
+          {/* P zones */}
+          {[
+            { top:"26%", left:"1%", w:"18%", h:"11%" },
+            { top:"57%", left:"35%", w:"14%", h:"9%" },
+          ].map((z, i) => (
+            <div key={i} className="absolute flex items-center justify-center rounded" style={{ top:z.top, left:z.left, width:z.w, height:z.h, background:"rgba(37,99,168,0.065)", border:"1.5px dashed rgba(37,99,168,0.22)" }}>
+              <span style={{ fontWeight:700, fontSize:9, color:"rgba(37,99,168,0.42)" }}>P</span>
             </div>
           ))}
-        </div>
+          {/* Floating pins */}
+          {[
+            { top:"20%", left:"7%" },
+            { top:"52%", left:"38%" },
+          ].map((p, i) => (
+            <div key={i} className="absolute flex flex-col items-center" style={{ top:p.top, left:p.left }}>
+              <div className="w-5 h-5 rounded-full rounded-bl-none -rotate-45 bg-[#2563a8] border border-white/60 flex items-center justify-center" style={{ boxShadow:"0 2px 6px rgba(37,99,168,0.35)" }}>
+                <span className="rotate-45 font-bold text-white" style={{ fontSize:7 }}>P</span>
+              </div>
+              <div className="w-1.5 h-1 bg-[#2563a8]/20 rounded-full mt-0.5 blur-[1px]" />
+            </div>
+          ))}
 
-        {/* Reservation items */}
-        {[
-          { name: "Andi M.", spot: "#4 · 14:30", status: "Confirmed", statusColor: "bg-accent-green/15 text-accent-green", iconColor: "#22c55e", icon: <polyline points="20 6 9 17 4 12" /> },
-          { name: "Sara K.", spot: "#7 · 15:00", status: "Pending", statusColor: "bg-accent-amber/15 text-accent-amber", iconColor: "#f59e0b", icon: <><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></> },
-          { name: "Drini L.", spot: "#2 · 15:30", status: "New", statusColor: "bg-accent-blue/15 text-accent-blue", iconColor: "#5ba3f5", icon: <><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="16" /><line x1="8" y1="12" x2="16" y2="12" /></> },
-        ].map((item) => (
-          <div key={item.name} className="relative flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/[0.04] transition-colors hover:bg-white/[0.04]">
-            <div className="w-9 h-9 rounded-xl bg-white/[0.04] flex items-center justify-center flex-shrink-0">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={item.iconColor} strokeWidth="2.2">
-                {item.icon}
-              </svg>
+          {/* Header */}
+          <div className="absolute top-0 left-0 right-0 z-10 pt-7 pb-3 px-4 flex items-center gap-2.5"
+            style={{ background:"rgba(255,255,255,0.78)", backdropFilter:"blur(16px)", borderBottom:"1px solid rgba(255,255,255,0.9)", boxShadow:"0 2px 10px rgba(15,34,64,0.07)" }}
+          >
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+              style={{ background:"linear-gradient(135deg,#7c3aed,#a855f7)", boxShadow:"0 2px 8px rgba(124,58,237,0.28)", border:"1.5px solid rgba(255,255,255,0.8)" }}>
+              M
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white/60 truncate">{item.name}</p>
-              <p className="text-[11px] text-white/20">Spot {item.spot}</p>
+              <div className="font-bold text-[#0f2240] leading-none" style={{ fontSize:13 }}>Hello, Maria 👋</div>
+              <div className="text-[#6b89a5] mt-0.5" style={{ fontSize:10 }}>Manage your parking spots</div>
             </div>
-            <span className={`px-3 py-1 rounded-full text-[11px] font-semibold ${item.statusColor} flex-shrink-0`}>
-              {item.status}
-            </span>
+            <div className="w-8 h-8 rounded-xl flex items-center justify-center relative flex-shrink-0"
+              style={{ background:"rgba(37,99,168,0.07)", border:"1px solid rgba(37,99,168,0.13)" }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563a8" strokeWidth="2">
+                <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
+              </svg>
+              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-red-500 rounded-full border border-white flex items-center justify-center text-white font-bold" style={{ fontSize:6 }}>2</span>
+            </div>
           </div>
-        ))}
+
+          {/* Tabs */}
+          <div className="absolute left-0 right-0 z-10 flex" style={{ top: 82, background:"rgba(255,255,255,0.65)", backdropFilter:"blur(12px)", borderBottom:"1px solid rgba(255,255,255,0.75)" }}>
+            {["My Spots", "Reservations"].map((tab, i) => (
+              <div key={tab} className="flex-1 flex items-center justify-center gap-1 py-2.5 relative" style={{ fontSize:10, fontWeight: i===0 ? 600 : 500, color: i===0 ? "#2563a8" : "#6b89a5" }}>
+                {tab}
+                {i === 1 && <span className="px-1.5 py-0.5 rounded-full text-[8px] font-semibold" style={{ background:"rgba(37,99,168,0.07)", color:"#2563a8", border:"1px solid rgba(37,99,168,0.13)" }}>2</span>}
+                {i === 0 && <div className="absolute bottom-0 left-[15%] right-[15%] h-[2px] rounded-t bg-[#2563a8]" />}
+              </div>
+            ))}
+          </div>
+
+          {/* Scrollable content */}
+          <div className="absolute left-0 right-0 bottom-0 flex flex-col gap-2 px-3 pb-3 overflow-hidden" style={{ top: 120 }}>
+            {/* Stats strip */}
+            <div className="grid grid-cols-3 gap-1.5">
+              {[{ val:"2", lbl:"Spots", color:"#2563a8" },{ val:"8", lbl:"Available", color:"#16a34a" },{ val:"2.4K", lbl:"ALL Today", color:"#d97706" }].map(s => (
+                <div key={s.lbl} className="text-center rounded-xl py-2" style={{ background:"rgba(255,255,255,0.78)", border:"1.5px solid rgba(255,255,255,0.92)", boxShadow:"0 3px 8px rgba(15,34,64,0.06)" }}>
+                  <div className="font-bold leading-none" style={{ fontSize:14, color:s.color }}>{s.val}</div>
+                  <div className="text-[#6b89a5] mt-0.5 uppercase font-medium tracking-wide" style={{ fontSize:7 }}>{s.lbl}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Spot card 1 */}
+            <div className="rounded-2xl p-3" style={{ background:"rgba(255,255,255,0.78)", border:"1.5px solid rgba(255,255,255,0.92)", boxShadow:"0 4px 14px rgba(15,34,64,0.07)" }}>
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <div>
+                  <div className="font-bold text-[#0f2240]" style={{ fontSize:11 }}>City Center Garage</div>
+                  <div className="flex items-center gap-1 text-[#6b89a5] mt-0.5" style={{ fontSize:8 }}>
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2"/></svg>
+                    41.32710, 19.81870
+                  </div>
+                </div>
+                <div className="rounded-lg px-2.5 py-1 flex items-center gap-1 flex-shrink-0" style={{ background:"rgba(37,99,168,0.07)", border:"1px solid rgba(37,99,168,0.13)", fontSize:8, fontWeight:600, color:"#2563a8" }}>
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  Edit
+                </div>
+              </div>
+              {/* Occupancy bar */}
+              <div className="mb-2">
+                <div className="flex justify-between mb-1">
+                  <span className="uppercase tracking-wide text-[#6b89a5]" style={{ fontSize:7, fontWeight:500 }}>Occupancy</span>
+                  <span style={{ fontSize:7, fontWeight:700, color:"#16a34a" }}>8/10 · 80%</span>
+                </div>
+                <div className="rounded-full overflow-hidden" style={{ height:4, background:"rgba(180,200,222,0.3)" }}>
+                  <div className="h-full rounded-full" style={{ width:"80%", background:"linear-gradient(90deg,#22c55e,#16a34a)" }} />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {[
+                  { lbl:"8/10 slots", cls:"rgba(34,197,94,0.1)", color:"#16a34a", border:"rgba(34,197,94,0.2)" },
+                  { lbl:"60 min max", cls:"rgba(251,191,36,0.12)", color:"#b45309", border:"rgba(251,191,36,0.25)" },
+                  { lbl:"500 ALL/hr", cls:"rgba(37,99,168,0.07)", color:"#2563a8", border:"rgba(37,99,168,0.13)" },
+                ].map(t => (
+                  <span key={t.lbl} className="rounded-full px-2 py-0.5" style={{ fontSize:8, fontWeight:600, background:t.cls, color:t.color, border:`1px solid ${t.border}` }}>{t.lbl}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Spot card 2 */}
+            <div className="rounded-2xl p-3" style={{ background:"rgba(255,255,255,0.78)", border:"1.5px solid rgba(255,255,255,0.92)", boxShadow:"0 4px 14px rgba(15,34,64,0.07)" }}>
+              <div className="flex items-start justify-between gap-2 mb-2">
+                <div>
+                  <div className="font-bold text-[#0f2240]" style={{ fontSize:11 }}>Mall Parking Lot B</div>
+                  <div className="flex items-center gap-1 text-[#6b89a5] mt-0.5" style={{ fontSize:8 }}>
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2"/></svg>
+                    41.33102, 19.82241
+                  </div>
+                </div>
+                <div className="rounded-lg px-2.5 py-1 flex items-center gap-1 flex-shrink-0" style={{ background:"rgba(37,99,168,0.07)", border:"1px solid rgba(37,99,168,0.13)", fontSize:8, fontWeight:600, color:"#2563a8" }}>
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  Edit
+                </div>
+              </div>
+              <div className="mb-2">
+                <div className="flex justify-between mb-1">
+                  <span className="uppercase tracking-wide text-[#6b89a5]" style={{ fontSize:7, fontWeight:500 }}>Occupancy</span>
+                  <span style={{ fontSize:7, fontWeight:700, color:"#dc2626" }}>20/20 · Full</span>
+                </div>
+                <div className="rounded-full overflow-hidden" style={{ height:4, background:"rgba(180,200,222,0.3)" }}>
+                  <div className="h-full rounded-full" style={{ width:"100%", background:"linear-gradient(90deg,#f87171,#dc2626)" }} />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {[
+                  { lbl:"Full", cls:"rgba(239,68,68,0.1)", color:"#dc2626", border:"rgba(239,68,68,0.2)" },
+                  { lbl:"120 min max", cls:"rgba(251,191,36,0.12)", color:"#b45309", border:"rgba(251,191,36,0.25)" },
+                  { lbl:"Free", cls:"rgba(107,137,165,0.1)", color:"#6b89a5", border:"rgba(107,137,165,0.15)" },
+                ].map(t => (
+                  <span key={t.lbl} className="rounded-full px-2 py-0.5" style={{ fontSize:8, fontWeight:600, background:t.cls, color:t.color, border:`1px solid ${t.border}` }}>{t.lbl}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom nav */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 grid grid-cols-4 py-2" style={{ background:"rgba(255,255,255,0.82)", backdropFilter:"blur(16px)", borderTop:"1px solid rgba(255,255,255,0.9)", boxShadow:"0 -3px 12px rgba(15,34,64,0.07)" }}>
+            {[
+              { lbl:"Home", active:false, icon:<><path d="m3 9 9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></> },
+              { lbl:"My Spots", active:true, icon:<><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></> },
+              { lbl:"Bookings", active:false, icon:<><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></> },
+              { lbl:"Profile", active:false, icon:<><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></> },
+            ].map(item => (
+              <div key={item.lbl} className="flex flex-col items-center gap-0.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={item.active ? "#2563a8" : "#6b89a5"} strokeWidth="2">{item.icon}</svg>
+                <span style={{ fontSize:7, fontWeight: item.active ? 600 : 500, color: item.active ? "#2563a8" : "#6b89a5" }}>{item.lbl}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -95,7 +229,7 @@ export function ForBusinesses() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="order-2 lg:order-1"
           >
-            <DashboardMockup />
+            <PhoneMockup />
           </motion.div>
 
           {/* Content */}

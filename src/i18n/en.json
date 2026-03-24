@@ -26,8 +26,11 @@
     "timeLabel": "average reservation time",
     "availability": "24/7",
     "availabilityLabel": "availability",
-    "free": "5 FREE",
-    "limited": "2 FREE"
+    "free": "5 spots",
+    "limited": "2 spots",
+    "three": "3 spots",
+    "one": "1 spot",
+    "full": "full"
   },
   "howItWorks": {
     "eyebrow": "How it works",
@@ -87,6 +90,16 @@
     "body1": "Parko Tani was born from a simple problem: every day, hundreds of drivers in Tirana waste time searching for parking. We built this app to end that drama.",
     "body2": "Our mission is simple — make parking in Tirana fast, easy, and stress-free. Let's change how the city moves!",
     "mission": "Our mission: A city where finding a parking spot is never a problem, because you've already found it."
+  },
+  "screenshots": {
+    "eyebrow": "The app",
+    "title": "Everything you need,",
+    "titleAccent": "right in your pocket.",
+    "subtitle": "From finding a spot to tracking your bookings — Parko Tani keeps it simple.",
+    "screen1Alt": "Parko Tani home screen",
+    "screen1Caption": "Find parking and manage your active reservations",
+    "screen2Alt": "Reservations history screen",
+    "screen2Caption": "All your bookings in one place"
   },
   "download": {
     "eyebrow": "Download now",

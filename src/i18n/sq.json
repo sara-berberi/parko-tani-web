@@ -11,7 +11,7 @@
     "badge": "Tirana · Shqipëri",
     "headline1": "S'ka më",
     "headline2": "xhiro kot.",
-    "subtitle": "Koha jote vlen. Gjej parkim menjëherë me Parko Tani — aplikacioni i zgjuar për parkimin në Tiranë.",
+    "subtitle": "Koha jote vlen. Parko Tani është një mënyrë më e lehtë për të gjetur parkim në Tiranë.",
     "cta": "Shkarko Falas",
     "ctaSecondary": "Mëso më shumë",
     "tagline": "Parko Tani — jepi fund dramës së parkimit."
@@ -26,8 +26,11 @@
     "timeLabel": "kohë mesatare rezervimi",
     "availability": "24/7",
     "availabilityLabel": "disponueshmëri",
-    "free": "5 VENDE",
-    "limited": "2 VENDE"
+    "free": "5 vende",
+    "limited": "2 vende",
+    "three": "3 vende",
+    "one": "1 vend",
+    "full": "plot"
   },
   "howItWorks": {
     "eyebrow": "Si funksionon",
@@ -63,7 +66,7 @@
     "eyebrow": "Për bizneset",
     "title": "Fito nga",
     "titleAccent": "parkimi yt",
-    "subtitle": "Ke vende parkimi? Lista ato në Parko Tani dhe fillo të fitosh.",
+    "subtitle": "Ke vende parkimi? Listo ato në Parko Tani dhe fillo të fitosh.",
     "features": [
       {
         "title": "Listo vendet e parkimit",
@@ -88,6 +91,16 @@
     "body2": "Misioni ynë është i thjeshtë — ta bëjmë parkimin në Tiranë të shpejtë, të lehtë dhe pa stres. Le të ndryshojmë mënyrën si qyteti ynë lëviz!",
     "mission": "Misioni ynë: Një qytet ku nuk humbet kohë duke kërkuar parkim, sepse e ke gjetur tashmë."
   },
+  "screenshots": {
+    "eyebrow": "Aplikacioni",
+    "title": "Gjithçka që të duhet,",
+    "titleAccent": "direkt në xhep.",
+    "subtitle": "Nga gjetja e parkimit deri te historiku i rezervimeve — Parko Tani e bën thjeshtë.",
+    "screen1Alt": "Ekrani kryesor i Parko Tani",
+    "screen1Caption": "Gjej parkim dhe menaxho rezervimet aktive",
+    "screen2Alt": "Historiku i rezervimeve",
+    "screen2Caption": "Shiko të gjitha rezervimet e tua në një vend"
+  },
   "download": {
     "eyebrow": "Shkarko tani",
     "title": "Gati për të",
@@ -98,7 +111,7 @@
     "comingSoon": "Së shpejti"
   },
   "footer": {
-    "description": "Aplikacioni i zgjuar për parkimin në Tiranë. Gjej, rezervo dhe parko — menjëherë.",
+    "description": "Parko Tani është një mënyrë më e lehtë për të gjetur parkim në Tiranë. Gjej, rezervo dhe parko — menjëherë.",
     "links": "Lidhje",
     "legal": "Ligjore",
     "contact": "Kontakt",

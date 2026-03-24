@@ -5,7 +5,7 @@ import { LanguageProvider } from "@/i18n/LanguageContext";
 export const metadata: Metadata = {
   title: "Parko Tani — Gjej parkim menjëherë në Tiranë",
   description:
-    "Parko Tani është aplikacioni i zgjuar për parkimin në Tiranë. Gjej, rezervo dhe parko — menjëherë. Find, reserve, and park instantly in Tirana.",
+    "Parko Tani është një mënyrë më e lehtë për të gjetur parkim në Tiranë. Gjej, rezervo dhe parko — menjëherë. Find, reserve, and park instantly in Tirana.",
   keywords: [
     "parkim",
     "parking",
