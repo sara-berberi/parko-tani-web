@@ -77,7 +77,7 @@ export default function TermsPage() {
 
   return (
     <>
-      <Navbar lightBg />
+      <Navbar />
       <main className="pt-24 md:pt-32 pb-20 md:pb-32">
         <div className="section-container max-w-3xl">
           <h1 className="font-display font-extrabold text-3xl md:text-5xl tracking-tight text-brand-700 mb-3">
