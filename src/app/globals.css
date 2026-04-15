@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,400;12..96,600;12..96,700;12..96,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap');
 
 @layer base {
   html {
@@ -13,106 +13,78 @@
   }
 
   body {
-    @apply font-sans text-brand-700 bg-white;
-    font-feature-settings: "cv11", "ss01";
+    @apply font-sans text-ink bg-paper;
+    font-feature-settings: "ss01", "cv11";
   }
 
   ::selection {
-    @apply bg-brand-500/15 text-brand-700;
+    @apply bg-ocean/20 text-ink;
   }
+
+  /* A hairline that actually looks like one, on any DPR */
+  .hairline-b { box-shadow: inset 0 -1px 0 rgba(11,18,32,0.08); }
+  .hairline-t { box-shadow: inset 0 1px 0 rgba(11,18,32,0.08); }
+  .hairline-b-light { box-shadow: inset 0 -1px 0 rgba(255,255,255,0.08); }
 }
 
 @layer components {
-  .section-container {
-    @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-16;
+  .container-x {
+    @apply mx-auto max-w-[1200px] px-6 md:px-10;
   }
 
-  .section-padding {
-    @apply py-24 md:py-32 lg:py-40;
+  .section-y {
+    @apply py-24 md:py-32;
   }
 
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-accent-blue to-brand-500;
-  }
-
-  .glass {
-    @apply bg-white/70 backdrop-blur-2xl border border-white/40;
-  }
-
-  .glass-dark {
-    @apply bg-white/[0.04] backdrop-blur-2xl border border-white/[0.08];
-  }
-
-  .noise-overlay {
-    position: relative;
-  }
-  .noise-overlay::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1;
-    mix-blend-mode: overlay;
-  }
-
-  /* Premium card style */
-  .card-premium {
-    @apply relative rounded-3xl p-8 md:p-10 bg-white border border-brand-100/60;
-    box-shadow:
-      0 0 0 1px rgba(0,0,0,0.02),
-      0 1px 2px rgba(0,0,0,0.02),
-      0 4px 16px rgba(0,0,0,0.04);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .card-premium:hover {
-    box-shadow:
-      0 0 0 1px rgba(37,99,168,0.06),
-      0 4px 8px rgba(0,0,0,0.04),
-      0 16px 48px rgba(37,99,168,0.08);
-    transform: translateY(-2px);
-    border-color: rgba(37,99,168,0.12);
-  }
-
-  .card-dark {
-    @apply relative rounded-3xl p-8 md:p-10 bg-white/[0.03] border border-white/[0.06];
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.02);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .card-dark:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(91,163,245,0.15);
-    box-shadow: 0 0 0 1px rgba(91,163,245,0.08), 0 16px 48px rgba(0,0,0,0.2);
-    transform: translateY(-2px);
-  }
-
-  /* Eyebrow label */
   .eyebrow {
-    @apply text-[11px] md:text-xs font-bold tracking-[0.2em] uppercase;
+    @apply inline-flex items-center gap-2 text-[11px] font-medium tracking-[0.18em] uppercase text-ink-500;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply block w-6 h-px bg-ink-300;
   }
 
-  /* Section heading */
-  .section-heading {
-    @apply font-display text-display-sm sm:text-display-md lg:text-display-lg text-brand-700;
+  .display {
+    @apply font-display font-extrabold text-ink tracking-tight;
   }
+
+  /* The only button style. No gradients, no glow. */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full
+           bg-ink text-paper text-[14px] font-medium tracking-tight
+           transition-all duration-300 hover:bg-ocean active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 h-12 px-6 rounded-full
+           bg-transparent text-ink text-[14px] font-medium tracking-tight
+           ring-1 ring-ink/15 hover:ring-ink/30 hover:bg-ink/[0.03]
+           transition-all duration-300;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 text-[14px] font-medium text-ink-500
+           hover:text-ink transition-colors duration-200;
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 0.3s ease;
+  }
+  .link-underline:hover { background-size: 100% 1px; }
 }
 
-/* Premium scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+/* Restrained scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(37, 99, 168, 0.15);
-  border-radius: 3px;
+  background: rgba(11,18,32,0.15);
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(37, 99, 168, 0.3);
-}
+::-webkit-scrollbar-thumb:hover { background: rgba(11,18,32,0.28); background-clip: padding-box; border: 3px solid transparent; }
 
-/* Smooth transitions for everything */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
+* { -webkit-tap-highlight-color: transparent; }

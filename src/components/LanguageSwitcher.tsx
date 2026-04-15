@@ -9,7 +9,7 @@ const languages = [
   { code: "en" as const, label: "EN", flag: "", name: "English" },
 ];
 
-export function LanguageSwitcher({ scrolled = true }: { scrolled?: boolean }) {
+export function LanguageSwitcher({ scrolled: _scrolled = true }: { scrolled?: boolean } = {}) {
   const { locale, setLocale } = useLanguage();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -28,19 +28,12 @@ export function LanguageSwitcher({ scrolled = true }: { scrolled?: boolean }) {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-[13px] font-medium transition-all duration-300 ${
-          scrolled
-            ? "text-brand-500 hover:bg-brand-50 border border-brand-100/60"
-            : "text-white/60 hover:text-white hover:bg-white/10 border border-white/10"
-        }`}
+        className="flex items-center gap-1.5 h-10 px-3 text-[12.5px] font-medium text-ink-500 hover:text-ink rounded-full hover:bg-ink/5 transition-colors duration-200"
         aria-label="Change language"
       >
-        <span className="text-sm">{current.flag}</span>
         <span>{current.label}</span>
         <svg
-          className={`w-3 h-3 transition-transform duration-200 ${open ? "rotate-180" : ""} ${
-            scrolled ? "text-brand-300" : "text-white/30"
-          }`}
+          className={`w-3 h-3 text-ink-400 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -61,7 +54,7 @@ export function LanguageSwitcher({ scrolled = true }: { scrolled?: boolean }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -6, scale: 0.96 }}
             transition={{ duration: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 mt-2 w-40 bg-white rounded-2xl shadow-elevated border border-brand-100/40 overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-40 bg-paper rounded-2xl shadow-lifted ring-1 ring-ink/10 overflow-hidden z-50"
           >
             {languages.map((lang) => (
               <button
@@ -70,17 +63,16 @@ export function LanguageSwitcher({ scrolled = true }: { scrolled?: boolean }) {
                   setLocale(lang.code);
                   setOpen(false);
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 text-[13px] font-medium transition-all duration-200 ${
+                className={`w-full flex items-center gap-3 px-4 py-3 text-[13px] font-medium transition-colors duration-200 ${
                   locale === lang.code
-                    ? "bg-brand-50 text-brand-500"
-                    : "text-brand-700 hover:bg-brand-50/60"
+                    ? "bg-ink/5 text-ink"
+                    : "text-ink-500 hover:bg-ink/[0.03] hover:text-ink"
                 }`}
               >
-                <span className="text-base">{lang.flag}</span>
                 <span>{lang.name}</span>
                 {locale === lang.code && (
                   <svg
-                    className="w-3.5 h-3.5 ml-auto text-brand-500"
+                    className="w-3.5 h-3.5 ml-auto text-ocean"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

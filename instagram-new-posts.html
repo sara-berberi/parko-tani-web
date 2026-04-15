@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parko Tani — New Posts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0f1a; font-family: 'Outfit', sans-serif;
+      padding: 60px 40px; display: flex; flex-wrap: wrap;
+      gap: 60px; justify-content: center;
+    }
+    .post-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .post-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(255,255,255,0.25);
+    }
+    /* All posts: 1080×1350 portrait */
+    .post { width: 1080px; height: 1350px; position: relative; overflow: hidden; flex-shrink: 0; border-radius: 12px; }
+
+    /* ── POST A — Big Coming Soon ── */
+    .pa { background: #04090f; }
+    .pa .grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,168,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,168,0.08) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+    .pa .glow-c {
+      position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%);
+      width: 1000px; height: 1000px;
+      background: radial-gradient(circle, rgba(37,99,168,0.32) 0%, rgba(37,99,168,0.1) 35%, rgba(37,99,168,0.03) 55%, transparent 70%);
+      border-radius: 50%;
+    }
+    .pa .glow-tr {
+      position: absolute; top: -150px; right: -150px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,163,245,0.13) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .pa .pin-area {
+      position: absolute; top: 100px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; z-index: 15;
+    }
+    .pa .pin {
+      width: 150px; height: 150px;
+      border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+      background: linear-gradient(135deg, #3a7fd4, #1848a0);
+      border: 6px solid rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 20px 70px rgba(37,99,168,0.8), 0 0 140px rgba(37,99,168,0.2);
+    }
+    .pa .pin-p { transform: rotate(45deg); font-size: 72px; font-weight: 900; color: #fff; line-height: 1; }
+    .pa .pin-shadow {
+      width: 48px; height: 14px; margin-top: 10px;
+      background: rgba(37,99,168,0.28); border-radius: 50%; filter: blur(10px);
+    }
+    .pa .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      z-index: 20; text-align: center; padding: 0 90px 110px;
+    }
+    .pa .badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 26px; border-radius: 999px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(91,163,245,0.65); margin-bottom: 36px;
+    }
+    .pa .badge .dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80; }
+    .pa h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 120px; font-weight: 800;
+      line-height: 0.85; letter-spacing: -0.05em;
+      color: #fff; margin-bottom: 36px;
+    }
+    .pa h1 .accent {
+      background: linear-gradient(90deg, #5ba3f5, #93c5fd, #5ba3f5);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .pa .sub {
+      font-size: 25px; font-weight: 300; line-height: 1.65;
+      color: rgba(255,255,255,0.3); max-width: 720px; margin-bottom: 60px;
+    }
+    .pa .cta-row { display: flex; gap: 24px; align-items: center; margin-bottom: 0; }
+    .pa .cta-main {
+      padding: 26px 72px; background: #2563a8; color: #fff;
+      font-weight: 700; font-size: 22px; border-radius: 20px;
+      box-shadow: 0 0 0 1px rgba(91,163,245,0.2), 0 14px 52px rgba(37,99,168,0.55);
+    }
+    .pa .cta-sub { font-size: 17px; font-weight: 400; color: rgba(255,255,255,0.2); line-height: 1.5; }
+    .pa .handle {
+      position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+      font-size: 15px; color: rgba(255,255,255,0.12); letter-spacing: 0.08em; white-space: nowrap; z-index: 20;
+    }
+
+    /* ── POST B — Driver portrait ── */
+    .pb { background: #060d1a; }
+    .pb .grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,168,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,168,0.06) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+    .pb .glow {
+      position: absolute; bottom: -100px; right: -100px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(37,99,168,0.3) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .pb .text {
+      position: absolute; top: 100px; left: 80px; right: 80px; z-index: 10;
+    }
+    .pb .eyebrow {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(91,163,245,0.6); margin-bottom: 24px;
+    }
+    .pb h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 100px; font-weight: 800;
+      line-height: 0.88; letter-spacing: -0.04em; color: #fff; margin-bottom: 32px;
+    }
+    .pb h2 span {
+      background: linear-gradient(90deg, #5ba3f5, #93c5fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .pb .desc {
+      font-size: 24px; font-weight: 300; color: rgba(255,255,255,0.35); line-height: 1.6; margin-bottom: 40px;
+    }
+    .pb .pills { display: flex; flex-direction: column; gap: 16px; }
+    .pb .pill {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 14px 28px; border-radius: 999px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      font-size: 20px; font-weight: 500; color: rgba(255,255,255,0.55); width: fit-content;
+    }
+    .pb .phone-wrap {
+      position: absolute; bottom: 0; right: -20px; z-index: 10;
+    }
+    /* ── Phone mockup shared styles ── */
+    .phone-shell {
+      position: relative; border-radius: 44px; overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.6);
+      box-shadow: inset 0 2px 8px rgba(255,255,255,0.8);
+    }
+    .phone-notch {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 20px;
+      background: rgba(255,255,255,0.6); border-radius: 0 0 16px 16px; z-index: 20;
+    }
+    .map-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(155deg,#eaf3fc 0%,#d4e6f4 50%,#c6dced 100%);
+    }
+    .map-road-h { position: absolute; left: 0; right: 0; background: #c0d5e6; border-top: 1px solid rgba(255,255,255,0.55); border-bottom: 1px solid rgba(255,255,255,0.55); }
+    .map-road-v { position: absolute; top: 0; bottom: 0; background: #c0d5e6; border-left: 1px solid rgba(255,255,255,0.55); border-right: 1px solid rgba(255,255,255,0.55); }
+    .map-block { position: absolute; background: rgba(255,255,255,0.28); border: 1px solid rgba(255,255,255,0.52); border-radius: 3px; }
+    .map-zone { position: absolute; display: flex; align-items: center; justify-content: center; background: rgba(37,99,168,0.065); border: 1.5px dashed rgba(37,99,168,0.22); border-radius: 4px; }
+    .map-zone span { font-weight: 700; font-size: 9px; color: rgba(37,99,168,0.42); }
+    .map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; }
+    .map-pin-head { width: 20px; height: 20px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #2563a8; border: 1px solid rgba(255,255,255,0.6); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(37,99,168,0.35); }
+    .map-pin-head span { transform: rotate(45deg); font-weight: 700; font-size: 7px; color: #fff; }
+    .map-pin-shadow { width: 6px; height: 4px; background: rgba(37,99,168,0.2); border-radius: 50%; margin-top: 2px; filter: blur(1px); }
+    .phone-header { position: absolute; top: 0; left: 0; right: 0; z-index: 10; background: rgba(255,255,255,0.78); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.9); box-shadow: 0 2px 10px rgba(15,34,64,0.07); }
+    .phone-bottom-nav { position: absolute; bottom: 0; left: 0; right: 0; z-index: 10; display: grid; grid-template-columns: repeat(4,1fr); padding: 8px 0; background: rgba(255,255,255,0.82); backdrop-filter: blur(16px); border-top: 1px solid rgba(255,255,255,0.9); box-shadow: 0 -3px 12px rgba(15,34,64,0.07); }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .phone-content { position: absolute; left: 0; right: 0; bottom: 52px; display: flex; flex-direction: column; gap: 8px; padding: 8px 12px; overflow: hidden; }
+    .pb .handle {
+      position: absolute; bottom: 40px; left: 80px;
+      font-size: 15px; color: rgba(255,255,255,0.12); letter-spacing: 0.06em; z-index: 20;
+    }
+
+    /* ── POST C — Owner portrait ── */
+    .pc { background: #f0f6ff; }
+    .pc .bar { position: absolute; top: 0; left: 0; right: 0; height: 7px; background: linear-gradient(90deg, #2563a8, #5ba3f5); }
+    .pc .deco {
+      position: absolute; right: -40px; top: -60px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 700px; font-weight: 900;
+      color: rgba(37,99,168,0.04); line-height: 1; pointer-events: none;
+    }
+    .pc .text {
+      position: absolute; top: 100px; left: 80px; right: 80px; z-index: 10;
+    }
+    .pc .eyebrow {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #2563a8; margin-bottom: 24px;
+    }
+    .pc h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 100px; font-weight: 800;
+      line-height: 0.88; letter-spacing: -0.04em; color: #0f2a4a; margin-bottom: 32px;
+    }
+    .pc h2 span { color: #2563a8; }
+    .pc .desc {
+      font-size: 24px; font-weight: 300; color: rgba(15,42,74,0.45); line-height: 1.6; margin-bottom: 40px;
+    }
+    .pc .pills { display: flex; flex-direction: column; gap: 16px; }
+    .pc .pill {
+      display: inline-flex; align-items: center; gap: 16px;
+      padding: 14px 28px; border-radius: 999px;
+      background: rgba(37,99,168,0.07); border: 1px solid rgba(37,99,168,0.12);
+      font-size: 20px; font-weight: 500; color: #1e3a5f; width: fit-content;
+    }
+    .pc .phone-wrap {
+      position: absolute; bottom: 0; right: 20px; z-index: 10;
+    }
+    .pc .handle {
+      position: absolute; bottom: 40px; left: 80px;
+      font-size: 15px; color: rgba(15,42,74,0.25); letter-spacing: 0.06em; z-index: 20;
+    }
+
+    /* ── POST D — Both phones portrait ── */
+    .pd { background: #060d1a; }
+    .pd .grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,168,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,168,0.06) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+    .pd .glow-l {
+      position: absolute; top: 25%; left: -10%;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(37,99,168,0.25) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .pd .glow-r {
+      position: absolute; bottom: 10%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(91,163,245,0.12) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .pd .header {
+      position: absolute; top: 80px; left: 0; right: 0;
+      text-align: center; z-index: 20;
+    }
+    .pd .header .eyebrow {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(91,163,245,0.5); margin-bottom: 20px;
+    }
+    .pd .header h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 90px; font-weight: 800;
+      line-height: 0.9; letter-spacing: -0.04em; color: #fff;
+    }
+    .pd .header h2 span {
+      background: linear-gradient(90deg, #5ba3f5, #93c5fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .pd .phones {
+      position: absolute; bottom: 80px; left: 0; right: 0;
+      display: flex; justify-content: center; align-items: flex-end;
+      gap: 40px; z-index: 20;
+    }
+    .pd .phone-item { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .pd .phone-label { font-size: 18px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .pd .phone-label.driver { color: #5ba3f5; }
+    .pd .phone-label.owner { color: rgba(255,255,255,0.35); }
+    .pd .phone { overflow: visible; }
+    .pd .phone.big { width: 280px; transform: rotate(-2deg) translateY(-20px); }
+    .pd .phone.small { width: 240px; transform: rotate(2.5deg); opacity: 0.82; }
+    .pd .footer {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      font-size: 15px; color: rgba(255,255,255,0.13); letter-spacing: 0.08em; z-index: 20; white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- POST A -->
+  <div class="post-wrap">
+    <div class="post-label">Post A — Big Coming Soon</div>
+    <div class="post pa">
+      <div class="pa grid"></div>
+      <div class="pa glow-c"></div>
+      <div class="pa glow-tr"></div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 1080 1350" fill="none">
+        <line x1="0" y1="450" x2="1080" y2="450" stroke="rgba(37,99,168,0.07)" stroke-width="22"/>
+        <line x1="0" y1="900" x2="1080" y2="900" stroke="rgba(37,99,168,0.05)" stroke-width="16"/>
+        <line x1="360" y1="0" x2="360" y2="1350" stroke="rgba(37,99,168,0.07)" stroke-width="22"/>
+        <line x1="720" y1="0" x2="720" y2="1350" stroke="rgba(37,99,168,0.05)" stroke-width="16"/>
+        <circle cx="540" cy="490" r="60" stroke="rgba(37,99,168,0.08)" stroke-width="24" fill="none"/>
+        <text x="140" y="280" font-family="Outfit" font-weight="900" font-size="64" fill="rgba(91,163,245,0.055)">P</text>
+        <text x="760" y="860" font-family="Outfit" font-weight="900" font-size="64" fill="rgba(91,163,245,0.055)">P</text>
+      </svg>
+      <div class="pa pin-area">
+        <div class="pa pin"><span class="pa pin-p">P</span></div>
+        <div class="pa pin-shadow"></div>
+      </div>
+      <div class="pa content">
+        <!-- <div class="pa badge"><span class="dot"></span>Tirana · Shqipëri · 2026</div> -->
+        <h1 class="pa">Po<br/>vjen.<br/><span class="accent">Shpejt.</span></h1>
+        <p class="pa sub">Parko Tani është aplikacioni i zgjuar për parkimin në Tiranë. Gjej, rezervo dhe parko — menjëherë.</p>
+        <div class="pa cta-row">
+          <div class="pa cta-main">Shkarko Falas</div>
+          <div class="pa cta-sub">Së shpejti në<br/>App Store &amp; Google Play</div>
+        </div>
+      </div>
+      <div class="pa handle">@parkotani · parkotani.com</div>
+    </div>
+  </div>
+
+  <!-- POST B — Driver -->
+  <div class="post-wrap">
+    <div class="post-label">Post B — Driver</div>
+    <div class="post pb">
+      <div class="pb grid"></div>
+      <div class="pb glow"></div>
+      <div class="pb text">
+        <div class="pb eyebrow">Për shoferët</div>
+        <h2 class="pb">Gjej<br/>parkim<br/><span>tani.</span></h2>
+        <p class="pb desc">Shiko çdo vend të lirë në Tiranë, rezervo me një klikim dhe navigo direkt — pa stres.</p>
+        <div class="pb pills">
+          <div class="pb pill">📍 Harta live</div>
+          <div class="pb pill">⚡ Rezervo në 30 sekonda</div>
+          <div class="pb pill">🧭 Navigim i drejtpërdrejtë</div>
+        </div>
+      </div>
+      <div class="pb phone-wrap">
+        <!-- Driver Phone Mockup (PhoneHome) -->
+        <div class="phone-shell" style="width:340px;height:700px;background:#dce8f5;box-shadow:0 -4px 60px rgba(37,99,168,0.4),inset 0 2px 8px rgba(255,255,255,0.8);">
+          <div class="phone-notch"></div>
+          <!-- Map background -->
+          <div class="map-bg">
+            <div class="map-road-h" style="top:19%;height:14px;"></div>
+            <div class="map-road-h" style="top:51%;height:11px;"></div>
+            <div class="map-road-h" style="top:76%;height:14px;"></div>
+            <div class="map-road-v" style="left:16%;width:12px;"></div>
+            <div class="map-road-v" style="left:46%;width:10px;"></div>
+            <div class="map-road-v" style="left:72%;width:12px;"></div>
+            <div class="map-block" style="top:2%;left:19%;width:25%;height:15%;"></div>
+            <div class="map-block" style="top:2%;left:49%;width:21%;height:15%;"></div>
+            <div class="map-block" style="top:24%;left:0%;width:14%;height:25%;"></div>
+            <div class="map-block" style="top:24%;left:19%;width:25%;height:25%;"></div>
+            <div class="map-block" style="top:24%;left:49%;width:21%;height:25%;"></div>
+            <div class="map-block" style="top:24%;left:75%;width:25%;height:25%;"></div>
+            <div class="map-block" style="top:56%;left:0%;width:14%;height:18%;"></div>
+            <div class="map-block" style="top:56%;left:19%;width:25%;height:18%;"></div>
+            <div class="map-block" style="top:56%;left:49%;width:21%;height:18%;"></div>
+            <div class="map-block" style="top:56%;left:75%;width:25%;height:18%;"></div>
+            <div class="map-block" style="top:80%;left:0%;width:14%;height:19%;"></div>
+            <div class="map-block" style="top:80%;left:19%;width:25%;height:19%;"></div>
+            <div class="map-block" style="top:80%;left:49%;width:21%;height:19%;"></div>
+            <div class="map-block" style="top:80%;left:75%;width:25%;height:19%;"></div>
+            <div class="map-zone" style="top:26%;left:20%;width:11%;height:11%;"><span>P</span></div>
+            <div class="map-zone" style="top:57%;left:50%;width:9%;height:9%;"><span>P</span></div>
+            <div class="map-zone" style="top:81%;left:76%;width:10%;height:9%;"><span>P</span></div>
+            <div class="map-pin" style="top:20%;left:28%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+            <div class="map-pin" style="top:54%;left:54%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+            <div class="map-pin" style="top:78%;left:78%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+          </div>
+          <!-- Header -->
+          <div class="phone-header" style="padding:28px 14px 10px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:32px;height:32px;border-radius:12px;background:linear-gradient(135deg,#2563a8,#4a82c8);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:12px;flex-shrink:0;border:1.5px solid rgba(255,255,255,0.8);box-shadow:0 2px 8px rgba(37,99,168,0.25);">J</div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-weight:700;color:#0f2240;font-size:12px;line-height:1;">Hello, John 👋</div>
+                <div style="font-size:9px;color:#6b89a5;margin-top:2px;"><span style="color:#2563a8;font-weight:600;">2 active</span> reservation(s)</div>
+              </div>
+              <div style="width:28px;height:28px;border-radius:12px;background:rgba(37,99,168,0.07);border:1px solid rgba(37,99,168,0.13);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                <span style="position:absolute;top:-4px;right:-4px;width:12px;height:12px;background:#ef4444;border-radius:50%;border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:5px;">3</span>
+              </div>
+            </div>
+          </div>
+          <!-- Content -->
+          <div class="phone-content" style="top:78px;">
+            <!-- Quick actions -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+              <div style="border-radius:16px;padding:10px;display:flex;flex-direction:column;gap:6px;background:#2563a8;box-shadow:0 4px 14px rgba(37,99,168,0.28);">
+                <div style="width:24px;height:24px;border-radius:8px;background:rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div><div style="font-weight:700;color:#fff;font-size:10px;line-height:1;">Find Parking</div><div style="font-size:8px;color:rgba(255,255,255,0.7);margin-top:1px;">47 spots nearby</div></div>
+              </div>
+              <div style="border-radius:16px;padding:10px;display:flex;flex-direction:column;gap:6px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 3px 10px rgba(15,34,64,0.07);">
+                <div style="width:24px;height:24px;border-radius:8px;background:rgba(37,99,168,0.07);display:flex;align-items:center;justify-content:center;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <div><div style="font-weight:700;color:#0f2240;font-size:10px;line-height:1;">My Cars</div><div style="font-size:8px;color:#6b89a5;margin-top:1px;">2 vehicles</div></div>
+              </div>
+            </div>
+            <!-- Reservations label -->
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-weight:700;color:#0f2240;font-size:11px;">Reservations</span>
+              <span style="font-size:9px;color:#2563a8;font-weight:500;">See all →</span>
+            </div>
+            <!-- Active reservation -->
+            <div style="border-radius:16px;padding:10px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 4px 14px rgba(15,34,64,0.07);">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:4px;margin-bottom:6px;">
+                <span style="font-weight:700;color:#0f2240;font-size:10px;">City Center Garage</span>
+                <div style="display:flex;align-items:center;gap:4px;border-radius:999px;padding:2px 6px;background:rgba(34,197,94,0.12);font-size:8px;font-weight:600;color:#16a34a;flex-shrink:0;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;display:inline-block;"></span>Active
+                </div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+                <div style="width:20px;height:20px;border-radius:8px;background:rgba(37,99,168,0.07);border:1px solid rgba(37,99,168,0.13);display:flex;align-items:center;justify-content:center;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <span style="font-size:9px;color:#1a3558;">Toyota Corolla</span>
+                <span style="border-radius:4px;padding:2px 6px;font-size:8px;font-weight:600;color:#6b89a5;background:rgba(37,99,168,0.07);letter-spacing:0.04em;">AB 123 CD</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="font-size:8px;color:#6b89a5;">⏱ 60 min left</span>
+                <span style="font-size:8px;color:rgba(107,137,165,0.4);">·</span>
+                <span style="font-size:8px;color:#2563a8;font-weight:600;">💲 500 ALL</span>
+              </div>
+              <div style="display:flex;gap:6px;">
+                <div style="flex:1;border-radius:12px;padding:6px;display:flex;align-items:center;justify-content:center;background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.18);font-size:8px;font-weight:600;color:#dc2626;">✕ Cancel</div>
+                <div style="border-radius:12px;padding:6px 10px;display:flex;align-items:center;justify-content:center;background:rgba(37,99,168,0.07);border:1px solid rgba(37,99,168,0.13);font-size:8px;font-weight:600;color:#2563a8;">⏱ Extend</div>
+              </div>
+            </div>
+            <!-- Expired reservation -->
+            <div style="border-radius:16px;padding:10px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 4px 14px rgba(15,34,64,0.07);opacity:0.7;">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:4px;margin-bottom:6px;">
+                <span style="font-weight:700;color:#6b89a5;font-size:10px;">Mall of Albania</span>
+                <div style="display:flex;align-items:center;gap:4px;border-radius:999px;padding:2px 6px;background:rgba(107,137,165,0.1);font-size:8px;font-weight:600;color:#6b89a5;flex-shrink:0;">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#6b89a5;flex-shrink:0;display:inline-block;"></span>Expired
+                </div>
+              </div>
+              <span style="font-size:8px;color:#6b89a5;">⏱ 30 min · Ended · Free</span>
+            </div>
+          </div>
+          <!-- Bottom nav -->
+          <div class="phone-bottom-nav">
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span style="font-size:7px;font-weight:600;color:#2563a8;">Home</span></div>
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span style="font-size:7px;font-weight:500;color:#6b89a5;">Find</span></div>
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span style="font-size:7px;font-weight:500;color:#6b89a5;">Bookings</span></div>
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span style="font-size:7px;font-weight:500;color:#6b89a5;">Profile</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pb handle">@parkotani · parkotani.com</div>
+    </div>
+  </div>
+
+  <!-- POST C — Owner -->
+  <div class="post-wrap">
+    <div class="post-label">Post C — Owner</div>
+    <div class="post pc">
+      <div class="pc bar"></div>
+      <div class="pc deco">P</div>
+      <div class="pc text">
+        <div class="pc eyebrow">Për pronarët</div>
+        <h2 class="pc">Kthe<br/>parkimin<br/><span>në fitim.</span></h2>
+        <p class="pc desc">Ke vende parkimi të lira? Listoji në Parko Tani dhe fillo të fitosh pa asnjë investim shtesë.</p>
+        <div class="pc pills">
+          <div class="pc pill">🏢 Listo vendet e tua</div>
+          <div class="pc pill">✅ Prano / refuzo rezervimet</div>
+          <div class="pc pill">💰 Fito të ardhura pasive</div>
+        </div>
+      </div>
+      <div class="pc phone-wrap">
+        <!-- Owner Phone Mockup (PhoneMockup) -->
+        <div class="phone-shell" style="width:320px;height:660px;background:#dce8f5;box-shadow:0 -4px 50px rgba(37,99,168,0.15),inset 0 2px 8px rgba(255,255,255,0.8);">
+          <div class="phone-notch"></div>
+          <!-- Map background -->
+          <div class="map-bg">
+            <div class="map-road-h" style="top:19%;height:14px;"></div>
+            <div class="map-road-h" style="top:51%;height:11px;"></div>
+            <div class="map-road-v" style="left:32%;width:12px;"></div>
+            <div class="map-road-v" style="left:68%;width:10px;"></div>
+            <div class="map-block" style="top:2%;left:34%;width:32%;height:15%;"></div>
+            <div class="map-block" style="top:24%;left:0%;width:30%;height:25%;"></div>
+            <div class="map-block" style="top:24%;left:34%;width:32%;height:25%;"></div>
+            <div class="map-block" style="top:24%;left:70%;width:30%;height:25%;"></div>
+            <div class="map-block" style="top:56%;left:0%;width:30%;height:18%;"></div>
+            <div class="map-block" style="top:56%;left:34%;width:32%;height:18%;"></div>
+            <div class="map-block" style="top:56%;left:70%;width:30%;height:18%;"></div>
+            <div class="map-zone" style="top:26%;left:1%;width:18%;height:11%;"><span>P</span></div>
+            <div class="map-zone" style="top:57%;left:35%;width:14%;height:9%;"><span>P</span></div>
+            <div class="map-pin" style="top:20%;left:7%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+            <div class="map-pin" style="top:52%;left:38%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+          </div>
+          <!-- Header -->
+          <div class="phone-header" style="padding:28px 16px 12px;display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:14px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;flex-shrink:0;border:1.5px solid rgba(255,255,255,0.8);box-shadow:0 2px 8px rgba(124,58,237,0.28);">M</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-weight:700;color:#0f2240;font-size:13px;line-height:1;">Hello, Maria 👋</div>
+              <div style="font-size:10px;color:#6b89a5;margin-top:2px;">Manage your parking spots</div>
+            </div>
+            <div style="width:32px;height:32px;border-radius:12px;background:rgba(37,99,168,0.07);border:1px solid rgba(37,99,168,0.13);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+              <span style="position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#ef4444;border-radius:50%;border:1.5px solid #fff;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:6px;">2</span>
+            </div>
+          </div>
+          <!-- Tabs -->
+          <div style="position:absolute;left:0;right:0;z-index:10;display:flex;top:82px;background:rgba(255,255,255,0.65);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.75);">
+            <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:10px 0;font-size:10px;font-weight:600;color:#2563a8;position:relative;">My Spots<div style="position:absolute;bottom:0;left:15%;right:15%;height:2px;background:#2563a8;border-radius:2px 2px 0 0;"></div></div>
+            <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:10px 0;font-size:10px;font-weight:500;color:#6b89a5;gap:4px;">Reservations <span style="background:rgba(37,99,168,0.07);color:#2563a8;border:1px solid rgba(37,99,168,0.13);border-radius:999px;padding:1px 6px;font-size:8px;font-weight:600;">2</span></div>
+          </div>
+          <!-- Content -->
+          <div class="phone-content" style="top:118px;gap:6px;padding:8px 12px;">
+            <!-- Stats strip -->
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;">
+              <div style="text-align:center;border-radius:12px;padding:8px 4px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 3px 8px rgba(15,34,64,0.06);"><div style="font-weight:700;font-size:14px;color:#2563a8;line-height:1;">2</div><div style="font-size:7px;color:#6b89a5;margin-top:2px;text-transform:uppercase;font-weight:500;letter-spacing:0.05em;">Spots</div></div>
+              <div style="text-align:center;border-radius:12px;padding:8px 4px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 3px 8px rgba(15,34,64,0.06);"><div style="font-weight:700;font-size:14px;color:#16a34a;line-height:1;">8</div><div style="font-size:7px;color:#6b89a5;margin-top:2px;text-transform:uppercase;font-weight:500;letter-spacing:0.05em;">Available</div></div>
+              <div style="text-align:center;border-radius:12px;padding:8px 4px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 3px 8px rgba(15,34,64,0.06);"><div style="font-weight:700;font-size:14px;color:#d97706;line-height:1;">2.4K</div><div style="font-size:7px;color:#6b89a5;margin-top:2px;text-transform:uppercase;font-weight:500;letter-spacing:0.05em;">ALL Today</div></div>
+            </div>
+            <!-- Spot card 1 -->
+            <div style="border-radius:16px;padding:12px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 4px 14px rgba(15,34,64,0.07);">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;">
+                <div><div style="font-weight:700;color:#0f2240;font-size:11px;">City Center Garage</div><div style="font-size:8px;color:#6b89a5;margin-top:2px;">📍 41.32710, 19.81870</div></div>
+                <div style="border-radius:8px;padding:4px 10px;background:rgba(37,99,168,0.07);border:1px solid rgba(37,99,168,0.13);font-size:8px;font-weight:600;color:#2563a8;flex-shrink:0;">✏ Edit</div>
+              </div>
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:7px;color:#6b89a5;text-transform:uppercase;font-weight:500;letter-spacing:0.05em;">Occupancy</span><span style="font-size:7px;font-weight:700;color:#16a34a;">8/10 · 80%</span></div>
+                <div style="height:4px;background:rgba(180,200,222,0.3);border-radius:999px;overflow:hidden;"><div style="width:80%;height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:999px;"></div></div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                <span style="border-radius:999px;padding:2px 8px;font-size:8px;font-weight:600;background:rgba(34,197,94,0.1);color:#16a34a;border:1px solid rgba(34,197,94,0.2);">8/10 slots</span>
+                <span style="border-radius:999px;padding:2px 8px;font-size:8px;font-weight:600;background:rgba(251,191,36,0.12);color:#b45309;border:1px solid rgba(251,191,36,0.25);">60 min max</span>
+                <span style="border-radius:999px;padding:2px 8px;font-size:8px;font-weight:600;background:rgba(37,99,168,0.07);color:#2563a8;border:1px solid rgba(37,99,168,0.13);">500 ALL/hr</span>
+              </div>
+            </div>
+            <!-- Spot card 2 -->
+            <div style="border-radius:16px;padding:12px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);box-shadow:0 4px 14px rgba(15,34,64,0.07);">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px;">
+                <div><div style="font-weight:700;color:#0f2240;font-size:11px;">Mall Parking Lot B</div><div style="font-size:8px;color:#6b89a5;margin-top:2px;">📍 41.33102, 19.82241</div></div>
+                <div style="border-radius:8px;padding:4px 10px;background:rgba(37,99,168,0.07);border:1px solid rgba(37,99,168,0.13);font-size:8px;font-weight:600;color:#2563a8;flex-shrink:0;">✏ Edit</div>
+              </div>
+              <div style="margin-bottom:8px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="font-size:7px;color:#6b89a5;text-transform:uppercase;font-weight:500;letter-spacing:0.05em;">Occupancy</span><span style="font-size:7px;font-weight:700;color:#dc2626;">20/20 · Full</span></div>
+                <div style="height:4px;background:rgba(180,200,222,0.3);border-radius:999px;overflow:hidden;"><div style="width:100%;height:100%;background:linear-gradient(90deg,#f87171,#dc2626);border-radius:999px;"></div></div>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                <span style="border-radius:999px;padding:2px 8px;font-size:8px;font-weight:600;background:rgba(239,68,68,0.1);color:#dc2626;border:1px solid rgba(239,68,68,0.2);">Full</span>
+                <span style="border-radius:999px;padding:2px 8px;font-size:8px;font-weight:600;background:rgba(251,191,36,0.12);color:#b45309;border:1px solid rgba(251,191,36,0.25);">120 min max</span>
+                <span style="border-radius:999px;padding:2px 8px;font-size:8px;font-weight:600;background:rgba(107,137,165,0.1);color:#6b89a5;border:1px solid rgba(107,137,165,0.15);">Free</span>
+              </div>
+            </div>
+          </div>
+          <!-- Bottom nav -->
+          <div class="phone-bottom-nav">
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span style="font-size:7px;font-weight:500;color:#6b89a5;">Home</span></div>
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span style="font-size:7px;font-weight:600;color:#2563a8;">My Spots</span></div>
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span style="font-size:7px;font-weight:500;color:#6b89a5;">Bookings</span></div>
+            <div class="nav-item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span style="font-size:7px;font-weight:500;color:#6b89a5;">Profile</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pc handle">@parkotani · parkotani.com</div>
+    </div>
+  </div>
+
+  <!-- POST D — Both -->
+  <div class="post-wrap">
+    <div class="post-label">Post D — Both Phones</div>
+    <div class="post pd">
+      <div class="pd grid"></div>
+      <div class="pd glow-l"></div>
+      <div class="pd glow-r"></div>
+      <div class="pd header">
+        <div class="eyebrow">Parko Tani</div>
+        <h2>Për <span>të gjithë.</span></h2>
+      </div>
+      <div class="pd phones">
+        <!-- Driver phone (big) -->
+        <div class="pd phone-item">
+          <div class="pd phone big">
+            <div class="phone-shell" style="width:280px;height:580px;background:#dce8f5;box-shadow:0 8px 48px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.07);">
+              <div class="phone-notch"></div>
+              <div class="map-bg">
+                <div class="map-road-h" style="top:19%;height:12px;"></div>
+                <div class="map-road-h" style="top:51%;height:10px;"></div>
+                <div class="map-road-v" style="left:16%;width:10px;"></div>
+                <div class="map-road-v" style="left:46%;width:9px;"></div>
+                <div class="map-road-v" style="left:72%;width:10px;"></div>
+                <div class="map-block" style="top:2%;left:19%;width:25%;height:15%;"></div>
+                <div class="map-block" style="top:2%;left:49%;width:21%;height:15%;"></div>
+                <div class="map-block" style="top:24%;left:0%;width:14%;height:25%;"></div>
+                <div class="map-block" style="top:24%;left:19%;width:25%;height:25%;"></div>
+                <div class="map-block" style="top:24%;left:49%;width:21%;height:25%;"></div>
+                <div class="map-block" style="top:24%;left:75%;width:25%;height:25%;"></div>
+                <div class="map-block" style="top:56%;left:0%;width:14%;height:18%;"></div>
+                <div class="map-block" style="top:56%;left:19%;width:25%;height:18%;"></div>
+                <div class="map-block" style="top:56%;left:49%;width:21%;height:18%;"></div>
+                <div class="map-block" style="top:56%;left:75%;width:25%;height:18%;"></div>
+                <div class="map-zone" style="top:26%;left:20%;width:11%;height:11%;"><span>P</span></div>
+                <div class="map-zone" style="top:57%;left:50%;width:9%;height:9%;"><span>P</span></div>
+                <div class="map-pin" style="top:20%;left:28%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+                <div class="map-pin" style="top:54%;left:54%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+              </div>
+              <div class="phone-header" style="padding:24px 12px 8px;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div style="width:28px;height:28px;border-radius:10px;background:linear-gradient(135deg,#2563a8,#4a82c8);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px;">J</div>
+                  <div style="flex:1;"><div style="font-weight:700;color:#0f2240;font-size:10px;">Hello, John 👋</div><div style="font-size:8px;color:#6b89a5;"><span style="color:#2563a8;font-weight:600;">2 active</span> reservation(s)</div></div>
+                </div>
+              </div>
+              <div class="phone-content" style="top:65px;gap:6px;padding:8px 10px;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+                  <div style="border-radius:14px;padding:8px;background:#2563a8;"><div style="font-weight:700;color:#fff;font-size:9px;">Find Parking</div><div style="font-size:7px;color:rgba(255,255,255,0.7);">47 spots nearby</div></div>
+                  <div style="border-radius:14px;padding:8px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);"><div style="font-weight:700;color:#0f2240;font-size:9px;">My Cars</div><div style="font-size:7px;color:#6b89a5;">2 vehicles</div></div>
+                </div>
+                <div style="font-weight:700;color:#0f2240;font-size:10px;">Reservations</div>
+                <div style="border-radius:14px;padding:9px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><span style="font-weight:700;color:#0f2240;font-size:9px;">City Center Garage</span><span style="background:rgba(34,197,94,0.12);color:#16a34a;font-size:7px;font-weight:600;border-radius:999px;padding:2px 5px;">● Active</span></div>
+                  <div style="font-size:7px;color:#6b89a5;">Toyota Corolla · AB 123 CD</div>
+                  <div style="font-size:7px;color:#2563a8;font-weight:600;margin-top:2px;">⏱ 60 min left · 500 ALL</div>
+                </div>
+                <div style="border-radius:14px;padding:9px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);opacity:0.65;">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;"><span style="font-weight:700;color:#6b89a5;font-size:9px;">Mall of Albania</span><span style="background:rgba(107,137,165,0.1);color:#6b89a5;font-size:7px;font-weight:600;border-radius:999px;padding:2px 5px;">Expired</span></div>
+                  <div style="font-size:7px;color:#6b89a5;">30 min · Ended · Free</div>
+                </div>
+              </div>
+              <div class="phone-bottom-nav" style="grid-template-columns:repeat(4,1fr);">
+                <div class="nav-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span style="font-size:6px;font-weight:600;color:#2563a8;">Home</span></div>
+                <div class="nav-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span style="font-size:6px;color:#6b89a5;">Find</span></div>
+                <div class="nav-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span style="font-size:6px;color:#6b89a5;">Bookings</span></div>
+                <div class="nav-item"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span style="font-size:6px;color:#6b89a5;">Profile</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pd phone-label driver">Shoferët</div>
+        </div>
+        <!-- Owner phone (small) -->
+        <div class="pd phone-item">
+          <div class="pd phone small">
+            <div class="phone-shell" style="width:240px;height:500px;background:#dce8f5;box-shadow:0 8px 48px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.07);">
+              <div class="phone-notch"></div>
+              <div class="map-bg">
+                <div class="map-road-h" style="top:19%;height:12px;"></div>
+                <div class="map-road-h" style="top:51%;height:10px;"></div>
+                <div class="map-road-v" style="left:32%;width:10px;"></div>
+                <div class="map-road-v" style="left:68%;width:9px;"></div>
+                <div class="map-block" style="top:2%;left:34%;width:32%;height:15%;"></div>
+                <div class="map-block" style="top:24%;left:0%;width:30%;height:25%;"></div>
+                <div class="map-block" style="top:24%;left:34%;width:32%;height:25%;"></div>
+                <div class="map-block" style="top:24%;left:70%;width:30%;height:25%;"></div>
+                <div class="map-block" style="top:56%;left:0%;width:30%;height:18%;"></div>
+                <div class="map-block" style="top:56%;left:34%;width:32%;height:18%;"></div>
+                <div class="map-block" style="top:56%;left:70%;width:30%;height:18%;"></div>
+                <div class="map-zone" style="top:26%;left:1%;width:18%;height:11%;"><span>P</span></div>
+                <div class="map-pin" style="top:20%;left:7%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+                <div class="map-pin" style="top:52%;left:38%;"><div class="map-pin-head"><span>P</span></div><div class="map-pin-shadow"></div></div>
+              </div>
+              <div class="phone-header" style="padding:24px 12px 8px;display:flex;align-items:center;gap:8px;">
+                <div style="width:28px;height:28px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#a855f7);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px;">M</div>
+                <div style="flex:1;"><div style="font-weight:700;color:#0f2240;font-size:10px;">Hello, Maria 👋</div><div style="font-size:7px;color:#6b89a5;">Manage your spots</div></div>
+              </div>
+              <div class="phone-content" style="top:60px;gap:5px;padding:8px 10px;">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+                  <div style="text-align:center;border-radius:10px;padding:6px 2px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);"><div style="font-weight:700;font-size:12px;color:#2563a8;">2</div><div style="font-size:6px;color:#6b89a5;">Spots</div></div>
+                  <div style="text-align:center;border-radius:10px;padding:6px 2px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);"><div style="font-weight:700;font-size:12px;color:#16a34a;">8</div><div style="font-size:6px;color:#6b89a5;">Available</div></div>
+                  <div style="text-align:center;border-radius:10px;padding:6px 2px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);"><div style="font-weight:700;font-size:12px;color:#d97706;">2.4K</div><div style="font-size:6px;color:#6b89a5;">ALL</div></div>
+                </div>
+                <div style="border-radius:14px;padding:10px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);">
+                  <div style="font-weight:700;color:#0f2240;font-size:10px;margin-bottom:4px;">City Center Garage</div>
+                  <div style="margin-bottom:4px;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:6px;color:#6b89a5;text-transform:uppercase;">Occupancy</span><span style="font-size:6px;font-weight:700;color:#16a34a;">8/10 · 80%</span></div><div style="height:3px;background:rgba(180,200,222,0.3);border-radius:999px;overflow:hidden;"><div style="width:80%;height:100%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:999px;"></div></div></div>
+                  <div style="display:flex;gap:3px;"><span style="border-radius:999px;padding:1px 6px;font-size:7px;font-weight:600;background:rgba(34,197,94,0.1);color:#16a34a;border:1px solid rgba(34,197,94,0.2);">8/10</span><span style="border-radius:999px;padding:1px 6px;font-size:7px;font-weight:600;background:rgba(37,99,168,0.07);color:#2563a8;border:1px solid rgba(37,99,168,0.13);">500 ALL/hr</span></div>
+                </div>
+                <div style="border-radius:14px;padding:10px;background:rgba(255,255,255,0.78);border:1.5px solid rgba(255,255,255,0.92);">
+                  <div style="font-weight:700;color:#0f2240;font-size:10px;margin-bottom:4px;">Mall Parking Lot B</div>
+                  <div style="margin-bottom:4px;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:6px;color:#6b89a5;text-transform:uppercase;">Occupancy</span><span style="font-size:6px;font-weight:700;color:#dc2626;">20/20 · Full</span></div><div style="height:3px;background:rgba(180,200,222,0.3);border-radius:999px;overflow:hidden;"><div style="width:100%;height:100%;background:linear-gradient(90deg,#f87171,#dc2626);border-radius:999px;"></div></div></div>
+                  <div style="display:flex;gap:3px;"><span style="border-radius:999px;padding:1px 6px;font-size:7px;font-weight:600;background:rgba(239,68,68,0.1);color:#dc2626;border:1px solid rgba(239,68,68,0.2);">Full</span><span style="border-radius:999px;padding:1px 6px;font-size:7px;font-weight:600;background:rgba(107,137,165,0.1);color:#6b89a5;border:1px solid rgba(107,137,165,0.15);">Free</span></div>
+                </div>
+              </div>
+              <div class="phone-bottom-nav">
+                <div class="nav-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span style="font-size:6px;color:#6b89a5;">Home</span></div>
+                <div class="nav-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2563a8" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span style="font-size:6px;font-weight:600;color:#2563a8;">My Spots</span></div>
+                <div class="nav-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span style="font-size:6px;color:#6b89a5;">Bookings</span></div>
+                <div class="nav-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6b89a5" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span style="font-size:6px;color:#6b89a5;">Profile</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="pd phone-label owner">Pronarët</div>
+        </div>
+      </div>
+      <div class="pd footer">@parkotani · parkotani.com</div>
+    </div>
+  </div>
+
+</body>
+</html>

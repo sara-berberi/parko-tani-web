@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parko Tani — Instagram Posts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0f1a;
+      font-family: 'Outfit', sans-serif;
+      padding: 60px 40px;
+      display: flex; flex-wrap: wrap;
+      gap: 60px; justify-content: center;
+    }
+    .post-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .post-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* All posts: 1080×1350 portrait */
+    .post {
+      width: 1080px; height: 1350px;
+      position: relative; overflow: hidden;
+      flex-shrink: 0; border-radius: 12px;
+    }
+
+    /* ── POST 1 — Coming Soon dark ── */
+    .post-1 { background: #060d1a; }
+    .post-1 .grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,168,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,168,0.07) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+    .post-1 .glow-c {
+      position: absolute; top: 38%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(37,99,168,0.3) 0%, rgba(37,99,168,0.08) 40%, transparent 70%);
+      border-radius: 50%;
+    }
+    .post-1 .glow-tr {
+      position: absolute; top: -150px; right: -150px;
+      width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(91,163,245,0.13) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .post-1 .pin-area {
+      position: absolute; top: 120px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      z-index: 15;
+    }
+    .post-1 .pin {
+      width: 130px; height: 130px;
+      border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+      background: linear-gradient(135deg, #2f72c4, #1d4ed8);
+      border: 5px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 16px 60px rgba(37,99,168,0.75), 0 0 120px rgba(37,99,168,0.2);
+    }
+    .post-1 .pin-p {
+      transform: rotate(45deg);
+      font-size: 62px; font-weight: 900; color: #fff; line-height: 1;
+    }
+    .post-1 .pin-shadow {
+      width: 40px; height: 12px; margin-top: 8px;
+      background: rgba(37,99,168,0.25); border-radius: 50%; filter: blur(8px);
+    }
+    .post-1 .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-end;
+      z-index: 20; text-align: center; padding: 0 80px 100px;
+    }
+    .post-1 .badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 24px; border-radius: 999px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(91,163,245,0.7); margin-bottom: 36px;
+    }
+    .post-1 .badge .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #4ade80; box-shadow: 0 0 10px #4ade80;
+    }
+    .post-1 h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 110px; font-weight: 800;
+      line-height: 0.88; letter-spacing: -0.05em;
+      color: #fff; margin-bottom: 32px;
+    }
+    .post-1 h1 span {
+      background: linear-gradient(90deg, #5ba3f5, #93c5fd, #5ba3f5);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .post-1 p {
+      font-size: 24px; font-weight: 300; line-height: 1.65;
+      color: rgba(255,255,255,0.32); max-width: 680px; margin-bottom: 60px;
+    }
+    .post-1 .cta {
+      padding: 24px 72px; background: #2563a8; color: #fff;
+      font-weight: 700; font-size: 22px; border-radius: 20px;
+      box-shadow: 0 0 0 1px rgba(91,163,245,0.2), 0 12px 48px rgba(37,99,168,0.55);
+    }
+    .post-1 .handle {
+      position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+      font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.13);
+      letter-spacing: 0.08em; white-space: nowrap; z-index: 20;
+    }
+
+    /* ── POST 2 — How It Works light ── */
+    .post-2 { background: #f8fafc; }
+    .post-2 .bar {
+      position: absolute; top: 0; left: 0; right: 0; height: 7px;
+      background: linear-gradient(90deg, #2563a8, #5ba3f5);
+    }
+    .post-2 .deco {
+      position: absolute; right: -30px; bottom: -60px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 620px; font-weight: 900;
+      color: rgba(37,99,168,0.045); line-height: 1; pointer-events: none;
+    }
+    .post-2 .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      padding: 100px 100px 90px; z-index: 10;
+    }
+    .post-2 .eyebrow {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #2563a8; margin-bottom: 36px;
+    }
+    .post-2 h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 96px; font-weight: 800;
+      line-height: 0.9; letter-spacing: -0.04em;
+      color: #0f2a4a; margin-bottom: 60px;
+    }
+    .post-2 h2 span { color: #2563a8; }
+    .post-2 .steps { display: flex; flex-direction: column; gap: 32px; margin-bottom: auto; }
+    .post-2 .step { display: flex; align-items: center; gap: 28px; }
+    .post-2 .step-num {
+      width: 64px; height: 64px; border-radius: 18px;
+      background: #2563a8; color: #fff; font-weight: 800; font-size: 26px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .post-2 .step-text { font-size: 26px; font-weight: 500; color: #1e3a5f; line-height: 1.35; }
+    .post-2 .bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 52px; border-top: 1px solid rgba(37,99,168,0.1);
+    }
+    .post-2 .brand {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 30px; font-weight: 800; color: #0f2a4a; letter-spacing: -0.02em;
+    }
+    .post-2 .brand span { color: #2563a8; }
+    .post-2 .handle { font-size: 17px; font-weight: 500; color: rgba(15,42,74,0.3); letter-spacing: 0.06em; }
+
+    /* ── POST 3 — Stats dark ── */
+    .post-3 { background: #060d1a; }
+    .post-3 .grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,168,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,168,0.06) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+    .post-3 .glow {
+      position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%);
+      width: 1100px; height: 700px;
+      background: radial-gradient(ellipse, rgba(37,99,168,0.22) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    .post-3 .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 10; padding: 100px; text-align: center;
+    }
+    .post-3 .eyebrow {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(91,163,245,0.6); margin-bottom: 32px;
+    }
+    .post-3 h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 84px; font-weight: 800;
+      line-height: 1; letter-spacing: -0.03em;
+      color: #fff; margin-bottom: 80px;
+    }
+    .post-3 h2 span {
+      background: linear-gradient(90deg, #5ba3f5, #93c5fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .post-3 .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px; width: 100%; margin-bottom: 80px;
+    }
+    .post-3 .stat {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 28px; padding: 52px 20px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .post-3 .stat-value {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 72px; font-weight: 800; line-height: 1; color: #fff;
+    }
+    .post-3 .stat-value.blue {
+      background: linear-gradient(90deg, #5ba3f5, #93c5fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .post-3 .stat-label { font-size: 16px; color: rgba(255,255,255,0.28); text-align: center; line-height: 1.4; }
+    .post-3 .handle { font-size: 15px; color: rgba(255,255,255,0.13); letter-spacing: 0.08em; }
+
+    /* ── POST 4 — Brand Reveal blue ── */
+    .post-4 { background: #2563a8; }
+    .post-4 .glow-tl {
+      position: absolute; top: -220px; left: -220px;
+      width: 750px; height: 750px;
+      background: radial-gradient(circle, rgba(255,255,255,0.13) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .post-4 .glow-br {
+      position: absolute; bottom: -220px; right: -220px;
+      width: 750px; height: 750px;
+      background: radial-gradient(circle, rgba(6,13,26,0.3) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .post-4 .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 10; padding: 80px; text-align: center;
+    }
+    .post-4 .big-p {
+      width: 220px; height: 220px;
+      border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+      background: rgba(255,255,255,0.15); border: 5px solid rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 64px; box-shadow: 0 24px 70px rgba(0,0,0,0.2);
+    }
+    .post-4 .big-p-text {
+      transform: rotate(45deg);
+      font-size: 108px; font-weight: 900; color: #fff; line-height: 1;
+    }
+    .post-4 h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 112px; font-weight: 800;
+      line-height: 0.88; letter-spacing: -0.04em;
+      color: #fff; margin-bottom: 32px;
+    }
+    .post-4 h1 .tani { color: rgba(255,255,255,0.45); }
+    .post-4 .tagline {
+      font-size: 26px; font-weight: 300; color: rgba(255,255,255,0.55);
+      line-height: 1.55; margin-bottom: 64px;
+    }
+    .post-4 .pill {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 18px 40px; border-radius: 999px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+      font-size: 20px; font-weight: 600; color: #fff;
+    }
+    .post-4 .pill .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #4ade80; box-shadow: 0 0 12px #4ade80;
+    }
+    .post-4 .handle {
+      position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+      font-size: 15px; color: rgba(255,255,255,0.25); letter-spacing: 0.08em; z-index: 20; white-space: nowrap;
+    }
+
+    /* ── POST 5 — Features split light ── */
+    .post-5 { background: #f0f6ff; }
+    .post-5 .top-band {
+      position: absolute; top: 0; left: 0; right: 0; height: 520px;
+      background: linear-gradient(160deg, #e4eefb 0%, #d6e8ff 100%);
+    }
+    .post-5 .top-grid {
+      position: absolute; top: 0; left: 0; right: 0; height: 520px;
+      background-image:
+        linear-gradient(rgba(37,99,168,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,168,0.07) 1px, transparent 1px);
+      background-size: 70px 70px;
+    }
+    .post-5 .city {
+      position: absolute; top: 60px; left: 100px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 20px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(37,99,168,0.38); z-index: 10;
+    }
+    .post-5 .hero-text {
+      position: absolute; top: 120px; left: 0; right: 0;
+      text-align: center; z-index: 10;
+    }
+    .post-5 .hero-text h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 108px; font-weight: 800;
+      line-height: 0.88; letter-spacing: -0.04em; color: #0f2a4a;
+    }
+    .post-5 .hero-text h2 span {
+      background: linear-gradient(90deg, #2563a8, #5ba3f5);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .post-5 .hero-text .sub {
+      font-size: 22px; font-weight: 300;
+      color: rgba(15,42,74,0.4); margin-top: 24px;
+    }
+    .post-5 .cards {
+      position: absolute; top: 490px; left: 0; right: 0;
+      padding: 0 60px; display: flex; flex-direction: column; gap: 24px; z-index: 20;
+    }
+    .post-5 .card {
+      background: #fff; border-radius: 28px; padding: 44px 48px;
+      box-shadow: 0 4px 32px rgba(37,99,168,0.07), 0 1px 4px rgba(0,0,0,0.04);
+      display: flex; align-items: center; gap: 32px;
+    }
+    .post-5 .card-icon {
+      width: 64px; height: 64px; border-radius: 18px;
+      background: rgba(37,99,168,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; flex-shrink: 0;
+    }
+    .post-5 .card-text { display: flex; flex-direction: column; gap: 6px; }
+    .post-5 .card-title { font-size: 22px; font-weight: 700; color: #0f2a4a; }
+    .post-5 .card-body { font-size: 17px; color: rgba(15,42,74,0.48); line-height: 1.45; }
+    .post-5 .bottom {
+      position: absolute; bottom: 52px; left: 100px; right: 100px;
+      display: flex; align-items: center; justify-content: space-between; z-index: 10;
+    }
+    .post-5 .brand {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 28px; font-weight: 800; color: #0f2a4a; letter-spacing: -0.02em;
+    }
+    .post-5 .brand span { color: #2563a8; }
+    .post-5 .handle { font-size: 16px; color: rgba(15,42,74,0.28); font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <!-- POST 1 -->
+  <div class="post-wrap">
+    <div class="post-label">Post 1 — Coming Soon</div>
+    <div class="post post-1">
+      <div class="post-1 grid"></div>
+      <div class="post-1 glow-c"></div>
+      <div class="post-1 glow-tr"></div>
+      <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 1080 1350" fill="none">
+        <line x1="0" y1="450" x2="1080" y2="450" stroke="rgba(37,99,168,0.07)" stroke-width="22"/>
+        <line x1="0" y1="900" x2="1080" y2="900" stroke="rgba(37,99,168,0.05)" stroke-width="16"/>
+        <line x1="360" y1="0" x2="360" y2="1350" stroke="rgba(37,99,168,0.07)" stroke-width="22"/>
+        <line x1="720" y1="0" x2="720" y2="1350" stroke="rgba(37,99,168,0.05)" stroke-width="16"/>
+        <circle cx="540" cy="500" r="60" stroke="rgba(37,99,168,0.08)" stroke-width="22" fill="none"/>
+        <circle cx="540" cy="500" r="24" fill="rgba(37,99,168,0.05)"/>
+        <text x="140" y="250" font-family="Outfit" font-weight="900" font-size="60" fill="rgba(91,163,245,0.06)">P</text>
+        <text x="760" y="820" font-family="Outfit" font-weight="900" font-size="60" fill="rgba(91,163,245,0.06)">P</text>
+      </svg>
+      <div class="post-1 pin-area">
+        <div class="post-1 pin"><span class="post-1 pin-p">P</span></div>
+        <div class="post-1 pin-shadow"></div>
+      </div>
+      <div class="post-1 content">
+        <div class="post-1 badge"><span class="dot"></span>Tirana · Shqipëri</div>
+        <h1 class="post-1">S'ka më<br/><span>xhiro kot.</span></h1>
+        <p class="post-1">Parko Tani po vjen. Gjej, rezervo dhe parko — menjëherë në Tiranë.</p>
+        <div class="post-1 cta">Së shpejti</div>
+      </div>
+      <div class="post-1 handle">@parkotani · parkotani.com</div>
+    </div>
+  </div>
+
+  <!-- POST 2 -->
+  <div class="post-wrap">
+    <div class="post-label">Post 2 — How It Works</div>
+    <div class="post post-2">
+      <div class="post-2 bar"></div>
+      <div class="post-2 deco">P</div>
+      <div class="post-2 content">
+        <div class="post-2 eyebrow">Si funksionon</div>
+        <h2 class="post-2">Parko me<br/><span>zgjuarsi.</span></h2>
+        <div class="post-2 steps">
+          <div class="post-2 step">
+            <div class="post-2 step-num">1</div>
+            <div class="post-2 step-text">Hap hartën — shiko vendet e lira në kohë reale</div>
+          </div>
+          <div class="post-2 step">
+            <div class="post-2 step-num">2</div>
+            <div class="post-2 step-text">Rezervo vendin — me një klikim, pa radhë</div>
+          </div>
+          <div class="post-2 step">
+            <div class="post-2 step-num">3</div>
+            <div class="post-2 step-text">Parko &amp; shko — navigim direkt te vendi yt</div>
+          </div>
+        </div>
+        <div class="post-2 bottom">
+          <div class="post-2 brand">Parko <span>Tani</span></div>
+          <div class="post-2 handle">@parkotani</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 3 -->
+  <div class="post-wrap">
+    <div class="post-label">Post 3 — Stats</div>
+    <div class="post post-3">
+      <div class="post-3 grid"></div>
+      <div class="post-3 glow"></div>
+      <div class="post-3 content">
+        <div class="post-3 eyebrow">Live · Disponibël · Tani</div>
+        <h2 class="post-3">Gjithçka<br/><span>në kohë reale</span></h2>
+        <div class="post-3 stats-grid">
+          <div class="post-3 stat">
+            <div class="post-3 stat-value blue">500+</div>
+            <div class="post-3 stat-label">vende parkimi të mapuara</div>
+          </div>
+          <div class="post-3 stat">
+            <div class="post-3 stat-value">30s</div>
+            <div class="post-3 stat-label">kohë mesatare rezervimi</div>
+          </div>
+          <div class="post-3 stat">
+            <div class="post-3 stat-value blue">24/7</div>
+            <div class="post-3 stat-label">disponueshmëri</div>
+          </div>
+        </div>
+        <div class="post-3 handle">@parkotani · parkotani.com</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 4 -->
+  <div class="post-wrap">
+    <div class="post-label">Post 4 — Brand Reveal</div>
+    <div class="post post-4">
+      <div class="post-4 glow-tl"></div>
+      <div class="post-4 glow-br"></div>
+      <div class="post-4 content">
+        <div class="post-4 big-p"><span class="post-4 big-p-text">P</span></div>
+        <h1 class="post-4">Parko<br/><span class="tani">Tani</span></h1>
+        <div class="post-4 tagline">Aplikacioni i zgjuar për<br/>parkimin në Tiranë</div>
+        <div class="post-4 pill"><span class="dot"></span>Duke u lansuar së shpejti</div>
+      </div>
+      <div class="post-4 handle">@parkotani · parkotani.com</div>
+    </div>
+  </div>
+
+  <!-- POST 5 -->
+  <div class="post-wrap">
+    <div class="post-label">Post 5 — Features</div>
+    <div class="post post-5">
+      <div class="post-5 top-band"></div>
+      <div class="post-5 top-grid"></div>
+      <div class="post-5 city">Tiranë, Shqipëri</div>
+      <div class="post-5 hero-text">
+        <h2>Gjej parkim<br/><span>menjëherë.</span></h2>
+        <div class="sub">Para se të dalësh nga shtëpia.</div>
+      </div>
+      <div class="post-5 cards">
+        <div class="post-5 card">
+          <div class="post-5 card-icon">📍</div>
+          <div class="post-5 card-text">
+            <div class="post-5 card-title">Disponueshmëri në kohë reale</div>
+            <div class="post-5 card-body">Shiko vendet e lira, të përditësuara live</div>
+          </div>
+        </div>
+        <div class="post-5 card">
+          <div class="post-5 card-icon">⚡</div>
+          <div class="post-5 card-text">
+            <div class="post-5 card-title">Rezervo në 30 sekonda</div>
+            <div class="post-5 card-body">Me një klikim, pa radhë e pa stres</div>
+          </div>
+        </div>
+        <div class="post-5 card">
+          <div class="post-5 card-icon">🧭</div>
+          <div class="post-5 card-text">
+            <div class="post-5 card-title">Navigim i drejtpërdrejtë</div>
+            <div class="post-5 card-body">GPS drejt vendit — parko me siguri</div>
+          </div>
+        </div>
+      </div>
+      <div class="post-5 bottom">
+        <div class="post-5 brand">Parko <span>Tani</span></div>
+        <div class="post-5 handle">@parkotani</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

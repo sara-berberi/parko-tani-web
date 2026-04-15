@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Parko Tani — App Icons & Splash Screens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0f1a;
+      font-family: 'Outfit', sans-serif;
+      padding: 60px 40px;
+    }
+    h2 {
+      color: rgba(255,255,255,0.25);
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 24px; margin-top: 60px;
+    }
+    h2:first-of-type { margin-top: 0; }
+    .row {
+      display: flex; flex-wrap: wrap;
+      gap: 32px; align-items: flex-end;
+      margin-bottom: 16px;
+    }
+    .item {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 10px;
+    }
+    .item span {
+      font-size: 11px; color: rgba(255,255,255,0.2);
+      letter-spacing: 0.05em; text-align: center;
+    }
+
+    /* ── Icon shell ── */
+    .icon {
+      position: relative; overflow: hidden; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #4a88e0, #1848a0);
+    }
+    .icon svg { width: 75%; height: 75%; }
+
+    /* ── Splash shell ── */
+    .splash {
+      position: relative; overflow: hidden; flex-shrink: 0;
+      background: #060d1a;
+    }
+    .splash .sg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,168,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,168,0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .splash .sc {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,168,0.35) 0%, rgba(37,99,168,0.08) 45%, transparent 70%);
+    }
+    .splash .str {
+      position: absolute; top: -30%; right: -30%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(91,163,245,0.12) 0%, transparent 60%);
+    }
+    .splash .content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 10;
+    }
+    .splash .wordmark {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800; color: #fff;
+      letter-spacing: -0.03em; line-height: 1;
+    }
+    .splash .wordmark span {
+      background: linear-gradient(90deg, #5ba3f5, #93c5fd);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .splash .tagline {
+      font-weight: 300; color: rgba(255,255,255,0.3);
+      letter-spacing: 0.01em; line-height: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- reusable logo SVG as a template -->
+  <svg style="display:none">
+    <symbol id="logo" viewBox="0 0 80 80" fill="none">
+      <defs>
+        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#4a88e0"/>
+          <stop offset="100%" stop-color="#1848a0"/>
+        </linearGradient>
+      </defs>
+      <rect width="80" height="80" rx="20" fill="url(#logo-grad)"/>
+      <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+      <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+      <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+      <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+            stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+      <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+      <circle cx="62" cy="62" r="2.5" fill="url(#logo-grad)"/>
+    </symbol>
+  </svg>
+
+  <!-- ══════════════════════════════════════════
+       APP ICONS
+  ══════════════════════════════════════════ -->
+  <h2>App Icon — 1024×1024 (App Store)</h2>
+  <div class="row">
+    <div class="item">
+      <div class="icon" style="width:1024px;height:1024px;border-radius:224px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/>
+            </linearGradient>
+          </defs>
+          <rect width="80" height="80" rx="20" fill="url(#g1)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#g1)"/>
+        </svg>
+      </div>
+      <span>1024×1024 — App Store</span>
+    </div>
+  </div>
+
+  <h2>App Icons — Device sizes</h2>
+  <div class="row">
+
+    <div class="item">
+      <div class="icon" style="width:180px;height:180px;border-radius:40px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>180×180<br/>iPhone @3x</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:167px;height:167px;border-radius:37px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>167×167<br/>iPad Pro @2x</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:152px;height:152px;border-radius:34px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>152×152<br/>iPad @2x</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:120px;height:120px;border-radius:26px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>120×120<br/>iPhone @2x</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:87px;height:87px;border-radius:20px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>87×87<br/>@3x small</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:76px;height:76px;border-radius:17px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>76×76<br/>iPad</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:60px;height:60px;border-radius:13px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>60×60</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:40px;height:40px;border-radius:9px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>40×40</span>
+    </div>
+
+    <div class="item">
+      <div class="icon" style="width:29px;height:29px;border-radius:6px;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:75%;height:75%;">
+          <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gi)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gi)"/>
+        </svg>
+      </div>
+      <span>29×29</span>
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       SPLASH SCREENS
+  ══════════════════════════════════════════ -->
+  <h2>Splash Screens</h2>
+  <div class="row">
+
+    <!-- iPhone 15 Pro Max -->
+    <div class="item">
+      <div class="splash" style="width:430px;height:932px;border-radius:52px;">
+        <div class="sg"></div>
+        <div class="sc" style="width:600px;height:600px;margin-left:-300px;margin-top:-300px;"></div>
+        <div class="str" style="width:400px;height:400px;"></div>
+        <div class="content" style="gap:28px;">
+          <svg viewBox="0 0 80 80" fill="none" style="width:100px;height:100px;filter:drop-shadow(0 8px 32px rgba(37,99,168,0.7));">
+            <defs>
+              <linearGradient id="gs1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/>
+              </linearGradient>
+            </defs>
+            <rect width="80" height="80" rx="20" fill="url(#gs1)"/>
+            <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+            <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+            <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                  stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+            <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+            <circle cx="62" cy="62" r="2.5" fill="url(#gs1)"/>
+          </svg>
+          <div class="wordmark" style="font-size:48px;">Parko <span>Tani</span></div>
+          <div class="tagline" style="font-size:15px;">Gjej parkim menjëherë në Tiranë</div>
+        </div>
+      </div>
+      <span>iPhone 15 Pro Max<br/>export at 1290×2796</span>
+    </div>
+
+    <!-- iPhone 14 / 13 -->
+    <div class="item">
+      <div class="splash" style="width:390px;height:844px;border-radius:48px;">
+        <div class="sg"></div>
+        <div class="sc" style="width:550px;height:550px;margin-left:-275px;margin-top:-275px;"></div>
+        <div class="str" style="width:360px;height:360px;"></div>
+        <div class="content" style="gap:24px;">
+          <svg viewBox="0 0 80 80" fill="none" style="width:88px;height:88px;filter:drop-shadow(0 8px 28px rgba(37,99,168,0.7));">
+            <defs>
+              <linearGradient id="gs2" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/>
+              </linearGradient>
+            </defs>
+            <rect width="80" height="80" rx="20" fill="url(#gs2)"/>
+            <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+            <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+            <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                  stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+            <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+            <circle cx="62" cy="62" r="2.5" fill="url(#gs2)"/>
+          </svg>
+          <div class="wordmark" style="font-size:44px;">Parko <span>Tani</span></div>
+          <div class="tagline" style="font-size:14px;">Gjej parkim menjëherë në Tiranë</div>
+        </div>
+      </div>
+      <span>iPhone 14 / 13<br/>export at 1170×2532</span>
+    </div>
+
+    <!-- iPhone SE -->
+    <div class="item">
+      <div class="splash" style="width:375px;height:667px;border-radius:40px;">
+        <div class="sg"></div>
+        <div class="sc" style="width:480px;height:480px;margin-left:-240px;margin-top:-240px;"></div>
+        <div class="str" style="width:320px;height:320px;"></div>
+        <div class="content" style="gap:20px;">
+          <svg viewBox="0 0 80 80" fill="none" style="width:76px;height:76px;filter:drop-shadow(0 6px 22px rgba(37,99,168,0.7));">
+            <defs>
+              <linearGradient id="gs3" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/>
+              </linearGradient>
+            </defs>
+            <rect width="80" height="80" rx="20" fill="url(#gs3)"/>
+            <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+            <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+            <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                  stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+            <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+            <circle cx="62" cy="62" r="2.5" fill="url(#gs3)"/>
+          </svg>
+          <div class="wordmark" style="font-size:40px;">Parko <span>Tani</span></div>
+          <div class="tagline" style="font-size:13px;">Gjej parkim menjëherë në Tiranë</div>
+        </div>
+      </div>
+      <span>iPhone SE<br/>export at 750×1334</span>
+    </div>
+
+    <!-- iPad Pro 12.9" -->
+    <div class="item">
+      <div class="splash" style="width:512px;height:683px;border-radius:20px;">
+        <div class="sg"></div>
+        <div class="sc" style="width:560px;height:560px;margin-left:-280px;margin-top:-280px;"></div>
+        <div class="str" style="width:380px;height:380px;"></div>
+        <div class="content" style="gap:28px;">
+          <svg viewBox="0 0 80 80" fill="none" style="width:100px;height:100px;filter:drop-shadow(0 8px 32px rgba(37,99,168,0.7));">
+            <defs>
+              <linearGradient id="gs4" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/>
+              </linearGradient>
+            </defs>
+            <rect width="80" height="80" rx="20" fill="url(#gs4)"/>
+            <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+            <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+            <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+            <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+            <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                  stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+            <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+            <circle cx="62" cy="62" r="2.5" fill="url(#gs4)"/>
+          </svg>
+          <div class="wordmark" style="font-size:50px;">Parko <span>Tani</span></div>
+          <div class="tagline" style="font-size:16px;">Gjej parkim menjëherë në Tiranë</div>
+        </div>
+      </div>
+      <span>iPad Pro 12.9"<br/>export at 2048×2732</span>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       INSTAGRAM PROFILE LOGO
+  ══════════════════════════════════════════ -->
+  <h2>Instagram Profile Picture — 320×320 (fits the circle)</h2>
+  <div class="row" style="align-items:center;">
+
+    <!-- The actual export asset: 320×320 circle -->
+    <div class="item">
+      <div style="width:320px;height:320px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#4a88e0,#1848a0);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:68%;height:68%;">
+          <defs>
+            <linearGradient id="ig1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/>
+            </linearGradient>
+          </defs>
+          <rect width="80" height="80" rx="20" fill="url(#ig1)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#ig1)"/>
+        </svg>
+      </div>
+      <span>320×320 — export this</span>
+    </div>
+
+    <!-- Preview at actual IG sizes -->
+    <div class="item">
+      <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#4a88e0,#1848a0);display:flex;align-items:center;justify-content:center;outline:3px solid rgba(255,255,255,0.08);">
+        <svg viewBox="0 0 80 80" fill="none" style="width:68%;height:68%;">
+          <defs><linearGradient id="gj" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gj)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gj)"/>
+        </svg>
+      </div>
+      <span>Profile (110px)</span>
+    </div>
+
+    <div class="item">
+      <div style="width:56px;height:56px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#4a88e0,#1848a0);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:68%;height:68%;">
+          <defs><linearGradient id="gj" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gj)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gj)"/>
+        </svg>
+      </div>
+      <span>Feed thumb (56px)</span>
+    </div>
+
+    <div class="item">
+      <div style="width:32px;height:32px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(135deg,#4a88e0,#1848a0);display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:68%;height:68%;">
+          <defs><linearGradient id="gj" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4a88e0"/><stop offset="100%" stop-color="#1848a0"/></linearGradient></defs>
+          <rect width="80" height="80" rx="20" fill="url(#gj)"/>
+          <rect width="80" height="40" rx="20" fill="rgba(255,255,255,0.12)"/>
+          <line x1="0" y1="52" x2="80" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="30" y1="52" x2="30" y2="80" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="54" y1="52" x2="54" y2="80" stroke="rgba(255,255,255,0.07)" stroke-width="1.5"/>
+          <path d="M22 16 L22 56" stroke="white" stroke-width="7" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="10" fill="white" opacity="0.12"/>
+          <circle cx="62" cy="62" r="5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="url(#gj)"/>
+        </svg>
+      </div>
+      <span>Story ring (32px)</span>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       INSTAGRAM PROFILE LOGO v2 — Modern
+  ══════════════════════════════════════════ -->
+  <h2>Instagram Profile Picture v2 — Modern</h2>
+  <div class="row" style="align-items:center;gap:48px;">
+
+    <!-- Option A: White bg, blue P wordmark -->
+    <div class="item">
+      <div style="width:320px;height:320px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#f0f6ff;display:flex;align-items:center;justify-content:center;position:relative;">
+        <!-- subtle radial glow -->
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 40% 35%, rgba(91,163,245,0.18) 0%, transparent 65%);"></div>
+        <!-- wordmark -->
+        <svg viewBox="0 0 160 80" fill="none" style="width:72%;position:relative;z-index:1;">
+          <defs>
+            <linearGradient id="wm1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4a88e0"/>
+              <stop offset="100%" stop-color="#1848a0"/>
+            </linearGradient>
+          </defs>
+          <!-- P -->
+          <path d="M8 12 L8 68" stroke="url(#wm1)" stroke-width="10" stroke-linecap="round"/>
+          <path d="M8 12 C8 12 36 12 36 12 C48 12 56 20 56 32 C56 44 48 52 36 52 L8 52"
+                stroke="url(#wm1)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- dot -->
+          <circle cx="148" cy="64" r="10" fill="#4a88e0" opacity="0.15"/>
+          <circle cx="148" cy="64" r="6" fill="#2563a8"/>
+          <circle cx="148" cy="64" r="3" fill="white"/>
+        </svg>
+      </div>
+      <span>Option A — White / Light</span>
+    </div>
+
+    <!-- Option B: Soft gradient bg, clean white P -->
+    <div class="item">
+      <div style="width:320px;height:320px;border-radius:50%;overflow:hidden;flex-shrink:0;background:linear-gradient(145deg,#e8f2ff 0%,#c8deff 50%,#a8c8ff 100%);display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.55) 0%, transparent 60%);"></div>
+        <svg viewBox="0 0 80 80" fill="none" style="width:58%;position:relative;z-index:1;">
+          <defs>
+            <linearGradient id="bb1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2563a8"/>
+              <stop offset="100%" stop-color="#1240780"/>
+            </linearGradient>
+          </defs>
+          <path d="M22 16 L22 62" stroke="#1848a0" stroke-width="8.5" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                stroke="#1848a0" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="9" fill="#1848a0" opacity="0.15"/>
+          <circle cx="62" cy="62" r="5.5" fill="#2563a8"/>
+          <circle cx="62" cy="62" r="2.5" fill="white"/>
+        </svg>
+      </div>
+      <span>Option B — Sky Gradient</span>
+    </div>
+
+    <!-- Option C: Dark navy, glowing P + subtle grid -->
+    <div class="item">
+      <div style="width:320px;height:320px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#0b1629;display:flex;align-items:center;justify-content:center;position:relative;">
+        <!-- grid -->
+        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,168,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,168,0.1) 1px,transparent 1px);background-size:32px 32px;"></div>
+        <!-- glow -->
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(37,99,168,0.4) 0%, transparent 65%);"></div>
+        <svg viewBox="0 0 80 80" fill="none" style="width:58%;position:relative;z-index:1;filter:drop-shadow(0 0 18px rgba(91,163,245,0.5));">
+          <path d="M22 16 L22 62" stroke="white" stroke-width="8.5" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                stroke="white" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="9" fill="white" opacity="0.1"/>
+          <circle cx="62" cy="62" r="5.5" fill="white" opacity="0.9"/>
+          <circle cx="62" cy="62" r="2.5" fill="#5ba3f5"/>
+        </svg>
+      </div>
+      <span>Option C — Dark + Glow</span>
+    </div>
+
+    <!-- Option D: Pure white, minimal blue stroke -->
+    <div class="item">
+      <div style="width:320px;height:320px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#ffffff;display:flex;align-items:center;justify-content:center;position:relative;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:60%;position:relative;z-index:1;">
+          <defs>
+            <linearGradient id="min1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5ba3f5"/>
+              <stop offset="100%" stop-color="#1848a0"/>
+            </linearGradient>
+          </defs>
+          <path d="M22 14 L22 64" stroke="url(#min1)" stroke-width="9" stroke-linecap="round"/>
+          <path d="M22 14 C22 14 46 14 46 14 C55 14 62 21 62 30 C62 39 55 46 46 46 L22 46"
+                stroke="url(#min1)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="63" cy="63" r="8" fill="#e8f2ff"/>
+          <circle cx="63" cy="63" r="5" fill="url(#min1)"/>
+          <circle cx="63" cy="63" r="2.2" fill="white"/>
+        </svg>
+      </div>
+      <span>Option D — Pure White / Minimal</span>
+    </div>
+
+  </div>
+
+  <!-- Option E: Light version of C -->
+    <div class="item">
+      <div style="width:320px;height:320px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#eef4ff;display:flex;align-items:center;justify-content:center;position:relative;">
+        <!-- light grid -->
+        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,168,0.09) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,168,0.09) 1px,transparent 1px);background-size:32px 32px;"></div>
+        <!-- soft glow -->
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(37,99,168,0.13) 0%, transparent 65%);"></div>
+        <svg viewBox="0 0 80 80" fill="none" style="width:58%;position:relative;z-index:1;filter:drop-shadow(0 0 14px rgba(37,99,168,0.25));">
+          <defs>
+            <linearGradient id="ce1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4a88e0"/>
+              <stop offset="100%" stop-color="#1848a0"/>
+            </linearGradient>
+          </defs>
+          <path d="M22 16 L22 62" stroke="url(#ce1)" stroke-width="8.5" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                stroke="url(#ce1)" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="9" fill="#2563a8" opacity="0.1"/>
+          <circle cx="62" cy="62" r="5.5" fill="#2563a8"/>
+          <circle cx="62" cy="62" r="2.5" fill="white"/>
+        </svg>
+      </div>
+      <span>Option E — Light C</span>
+    </div>
+
+  </div>
+
+  <!-- preview at actual IG sizes for v2 -->
+  <div style="margin-top:24px;display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap;">
+    <div class="item">
+      <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;background:#f0f6ff;display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 40% 35%, rgba(91,163,245,0.18) 0%, transparent 65%);"></div>
+        <svg viewBox="0 0 160 80" fill="none" style="width:72%;position:relative;z-index:1;">
+          <path d="M8 12 L8 68" stroke="#2563a8" stroke-width="10" stroke-linecap="round"/>
+          <path d="M8 12 C8 12 36 12 36 12 C48 12 56 20 56 32 C56 44 48 52 36 52 L8 52"
+                stroke="#2563a8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="148" cy="64" r="6" fill="#2563a8"/>
+          <circle cx="148" cy="64" r="3" fill="white"/>
+        </svg>
+      </div>
+      <span>A · 110px</span>
+    </div>
+    <div class="item">
+      <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;background:linear-gradient(145deg,#e8f2ff,#c8deff,#a8c8ff);display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.55) 0%, transparent 60%);"></div>
+        <svg viewBox="0 0 80 80" fill="none" style="width:58%;position:relative;z-index:1;">
+          <path d="M22 16 L22 62" stroke="#1848a0" stroke-width="8.5" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                stroke="#1848a0" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="5.5" fill="#2563a8"/><circle cx="62" cy="62" r="2.5" fill="white"/>
+        </svg>
+      </div>
+      <span>B · 110px</span>
+    </div>
+    <div class="item">
+      <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;background:#0b1629;display:flex;align-items:center;justify-content:center;position:relative;">
+        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(37,99,168,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,168,0.1) 1px,transparent 1px);background-size:11px 11px;"></div>
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%, rgba(37,99,168,0.4) 0%, transparent 65%);"></div>
+        <svg viewBox="0 0 80 80" fill="none" style="width:58%;position:relative;z-index:1;filter:drop-shadow(0 0 6px rgba(91,163,245,0.5));">
+          <path d="M22 16 L22 62" stroke="white" stroke-width="8.5" stroke-linecap="round"/>
+          <path d="M22 16 C22 16 46 16 46 16 C54 16 60 22 60 30 C60 38 54 44 46 44 L22 44"
+                stroke="white" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="62" cy="62" r="5.5" fill="white" opacity="0.9"/><circle cx="62" cy="62" r="2.5" fill="#5ba3f5"/>
+        </svg>
+      </div>
+      <span>C · 110px</span>
+    </div>
+    <div class="item">
+      <div style="width:110px;height:110px;border-radius:50%;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;">
+        <svg viewBox="0 0 80 80" fill="none" style="width:60%;">
+          <defs>
+            <linearGradient id="min2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5ba3f5"/><stop offset="100%" stop-color="#1848a0"/>
+            </linearGradient>
+          </defs>
+          <path d="M22 14 L22 64" stroke="url(#min2)" stroke-width="9" stroke-linecap="round"/>
+          <path d="M22 14 C22 14 46 14 46 14 C55 14 62 21 62 30 C62 39 55 46 46 46 L22 46"
+                stroke="url(#min2)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="63" cy="63" r="8" fill="#e8f2ff"/>
+          <circle cx="63" cy="63" r="5" fill="url(#min2)"/>
+          <circle cx="63" cy="63" r="2.2" fill="white"/>
+        </svg>
+      </div>
+      <span>D · 110px</span>
+    </div>
+  </div>
+
+  <!-- export tip -->
+  <div style="margin-top:60px;padding:28px 32px;background:rgba(37,99,168,0.08);border:1px solid rgba(37,99,168,0.15);border-radius:16px;max-width:900px;">
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.8;">
+      <strong style="color:rgba(91,163,245,0.7);">How to export:</strong>
+      Open in Chrome → right-click the icon or splash → <em>Inspect</em> → right-click the element in DevTools → <strong>Capture node screenshot</strong> → saves as PNG at exact rendered size.
+    </p>
+  </div>
+
+</body>
+</html>

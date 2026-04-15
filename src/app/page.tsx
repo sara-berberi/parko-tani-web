@@ -2,12 +2,11 @@
 
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/sections/Hero";
-import { LiveStats } from "@/components/sections/LiveStats";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-import { ValueProposition } from "@/components/sections/ValueProposition";
-import { ForBusinesses } from "@/components/sections/ForBusinesses";
+import { LaunchesTop } from "@/components/sections/Launches";
 import { AppScreenshots } from "@/components/sections/AppScreenshots";
-import { About } from "@/components/sections/About";
+import { ForBusinesses } from "@/components/sections/ForBusinesses";
+import { LaunchesBottom } from "@/components/sections/Launches";
 import { Download } from "@/components/sections/Download";
 import { Footer } from "@/components/Footer";
 
@@ -17,12 +16,11 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <LiveStats />
         <HowItWorks />
-        <ValueProposition />
-        <ForBusinesses />
+        <LaunchesTop />
         <AppScreenshots />
-        <About />
+        <ForBusinesses />
+        <LaunchesBottom />
         <Download />
       </main>
       <Footer />

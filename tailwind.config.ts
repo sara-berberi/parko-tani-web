@@ -10,85 +10,100 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Restrained palette — no more rainbow of blues.
+        ink: {
+          DEFAULT: "#0b1220", // near-black navy, primary text & dark sections
+          900: "#0b1220",
+          800: "#111a2e",
+          700: "#1a2540",
+          600: "#2a3756",
+          500: "#4a5878",
+          400: "#7a869e",
+          300: "#a8b1c3",
+          200: "#d4d9e2",
+          100: "#eceef3",
+        },
+        paper: {
+          DEFAULT: "#f6f5f0", // warm off-white, page background
+          50: "#fdfcf8",
+          100: "#f6f5f0",
+          200: "#eceae1",
+          300: "#dfdcd0",
+        },
+        ocean: {
+          DEFAULT: "#1e4d92", // single blue accent — used sparingly
+          50: "#eff4fb",
+          100: "#dbe6f5",
+          200: "#b6cce9",
+          300: "#7fa3d2",
+          400: "#4e7bb8",
+          500: "#1e4d92",
+          600: "#19407a",
+          700: "#153463",
+          800: "#11284c",
+          900: "#0b1c36",
+        },
+        // Kept old brand keys pointing at ocean so any lingering refs still compile.
         brand: {
-          50: "#f0f6fb",
-          100: "#dce8f5",
-          200: "#c0d4ed",
-          300: "#93b4d8",
-          400: "#6b89a5",
-          500: "#2563a8",
-          600: "#1e54a0",
-          700: "#0f2240",
-          800: "#0d1f3c",
-          900: "#091628",
-          950: "#040c18",
+          50: "#eff4fb",
+          100: "#dbe6f5",
+          200: "#b6cce9",
+          300: "#7fa3d2",
+          400: "#4e7bb8",
+          500: "#1e4d92",
+          600: "#19407a",
+          700: "#0b1220",
+          800: "#11284c",
+          900: "#0b1c36",
+          950: "#070c18",
         },
         accent: {
-          blue: "#5ba3f5",
-          green: "#22c55e",
-          amber: "#f59e0b",
+          blue: "#4e7bb8",
+          green: "#3a9d7a",
+          amber: "#c88a2e",
         },
       },
       fontFamily: {
         sans: ["Outfit", "system-ui", "sans-serif"],
         display: ["Bricolage Grotesque", "system-ui", "sans-serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "monospace"],
       },
       fontSize: {
-        "display-xl": ["5rem", { lineHeight: "0.92", letterSpacing: "-0.04em", fontWeight: "800" }],
-        "display-lg": ["3.75rem", { lineHeight: "0.95", letterSpacing: "-0.035em", fontWeight: "800" }],
-        "display-md": ["3rem", { lineHeight: "1.0", letterSpacing: "-0.03em", fontWeight: "800" }],
-        "display-sm": ["2.25rem", { lineHeight: "1.1", letterSpacing: "-0.025em", fontWeight: "800" }],
+        // Tight, intentional type scale. No more "display-xl" gigantism.
+        "display-xl": [
+          "4.5rem",
+          { lineHeight: "0.98", letterSpacing: "-0.035em", fontWeight: "700" },
+        ],
+        "display-lg": [
+          "3.5rem",
+          { lineHeight: "1.0", letterSpacing: "-0.03em", fontWeight: "700" },
+        ],
+        "display-md": [
+          "2.5rem",
+          { lineHeight: "1.05", letterSpacing: "-0.025em", fontWeight: "700" },
+        ],
+        "display-sm": [
+          "1.875rem",
+          { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "700" },
+        ],
       },
       borderRadius: {
         "4xl": "2rem",
         "5xl": "2.5rem",
       },
       boxShadow: {
-        "glow-sm": "0 0 20px rgba(37,99,168,0.15)",
-        "glow-md": "0 0 40px rgba(37,99,168,0.2)",
-        "glow-lg": "0 4px 60px rgba(37,99,168,0.3)",
-        "glow-xl": "0 8px 80px rgba(37,99,168,0.4)",
-        "card": "0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.04)",
-        "card-hover": "0 2px 8px rgba(0,0,0,0.06), 0 16px 40px rgba(0,0,0,0.08)",
-        "elevated": "0 24px 48px -12px rgba(0,0,0,0.12)",
-      },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "noise": "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E\")",
+        soft: "0 1px 2px rgba(11,18,32,0.04), 0 8px 24px -8px rgba(11,18,32,0.06)",
+        lifted:
+          "0 1px 2px rgba(11,18,32,0.06), 0 18px 48px -16px rgba(11,18,32,0.14)",
+        device:
+          "0 40px 80px -20px rgba(11,18,32,0.35), 0 12px 24px -12px rgba(11,18,32,0.2)",
       },
       animation: {
-        "pulse-glow": "pulse-glow 4s ease-in-out infinite alternate",
-        "float": "float 6s ease-in-out infinite",
-        "float-delayed": "float 6s ease-in-out 2s infinite",
-        "float-slow": "float 8s ease-in-out infinite",
-        "pin-bob": "pin-bob 4s ease-in-out infinite alternate",
-        "blink": "blink 2s ease infinite",
-        "shimmer": "shimmer 3s ease-in-out infinite",
-        "fade-in": "fade-in 0.6s ease-out forwards",
+        rise: "rise 0.7s cubic-bezier(0.22,1,0.36,1) forwards",
       },
       keyframes: {
-        "pulse-glow": {
-          "0%": { opacity: "0.5", transform: "scale(0.95)" },
-          "100%": { opacity: "1", transform: "scale(1.05)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-14px)" },
-        },
-        "pin-bob": {
-          "0%": { transform: "translateY(0)" },
-          "100%": { transform: "translateY(-18px)" },
-        },
-        blink: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.3" },
-        },
-        shimmer: {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        "fade-in": {
-          from: { opacity: "0", transform: "translateY(8px)" },
+        rise: {
+          from: { opacity: "0", transform: "translateY(12px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
       },

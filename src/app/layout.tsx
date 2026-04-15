@@ -3,6 +3,11 @@ import "./globals.css";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   title: "Parko Tani — Gjej parkim menjëherë në Tiranë",
   description:
     "Parko Tani është një mënyrë më e lehtë për të gjetur parkim në Tiranë. Gjej, rezervo dhe parko — menjëherë. Find, reserve, and park instantly in Tirana.",
