@@ -34,7 +34,7 @@ const slides: SlideData[] = [
     sub: "Shiko çmimin, distancën dhe vendet e lira — me një shikim.",
     chips: ["250 ALL/hr", "20 / 20 vende", "3.0 km"],
     variant: "medium",
-    img: "/launches/3.jpeg",
+    img: "/launches/11.jpeg",
   },
   {
     eyebrow: "Për pronarët",
@@ -182,10 +182,7 @@ function SlideWithPhone({
         </div>
 
         {/* iPhone mockup side */}
-        <div
-          className="flex-shrink-0 flex items-end justify-center px-10 pb-0 pt-10 md:pt-0 md:px-12"
-          style={{ width: "min(260px, 45%)" }}
-        >
+        <div className="flex-shrink-0 flex items-end justify-center w-[55%] mx-auto pb-0 pt-6 md:pt-0 md:mx-0 md:w-[260px] md:px-10">
           {/* Ambient glow */}
           <div
             className="absolute bottom-0 w-48 h-48 rounded-full blur-3xl opacity-20 pointer-events-none"
