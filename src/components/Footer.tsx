@@ -67,6 +67,11 @@ export function Footer() {
                   {t.footer.terms}
                 </a>
               </li>
+              <li>
+                <a href="/support" className="text-[13.5px] text-ink-500 hover:text-ink transition-colors link-underline">
+                  {t.footer.support}
+                </a>
+              </li>
             </ul>
           </div>
 
