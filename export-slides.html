@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>Export Slides</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { background:#000; }
+
+/*
+  Each .page is exactly 1290×2796px — the App Store target size.
+  Inside it we place an iframe showing launches.html, clipped to one slide,
+  scaled up via transform so it fills the page perfectly.
+
+  Slide natural size in launches.html at 1600px layout: ~360×640px (9:16).
+  Scale to fill 1290 wide: 1290/360 = 3.5833
+  Scaled height: 640 * 3.5833 = 2293px
+  Remaining bottom space: 2796 - 2293 = 503px — filled by scaling the
+  bg-extend area.
+
+  Simpler: scale the entire export-wrap (360×780) by 3.5833 → 1290×2794 ≈ 1290×2796
+*/
+
+.page {
+  width: 1290px;
+  height: 2796px;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.page iframe {
+  border: none;
+  /* iframe is 1600px wide (matches launches.html max-width body) */
+  /* We scale it so one slide (360px wide) fills 1290px */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
+</head>
+<body>
+<p style="color:#fff;font-family:sans-serif;padding:20px;font-size:14px;">
+  Open DevTools → set viewport to <b>1290 × 2796</b>, DPR 1.<br/>
+  Right-click each <code>.page</code> → <b>Capture node screenshot</b>.
+</p>
+
+<!--
+  Better approach that actually works in browser:
+  We embed each slide directly using an inline transform-scaled wrapper.
+  The slide HTML is inlined so fonts/images resolve from the same origin.
+-->
+
+<script>
+// Dynamically build scaled slide pages by fetching launches.html
+// and extracting each slide's HTML + styles.
+// Since this is file://, we use a different approach:
+// Each slide is rendered in a scaled iframe pointed at a hash.
+</script>
+
+</body>
+</html>

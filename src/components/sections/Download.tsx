@@ -35,7 +35,8 @@ export function Download() {
             <StoreButton
               platform="ios"
               label={t.download.appStore}
-              small={t.download.comingSoon}
+              small={t.download.downloadOn}
+              href="https://apps.apple.com/us/app/parko-tani/id6761279083"
             />
             <StoreButton
               platform="android"
@@ -122,16 +123,27 @@ function StoreButton({
   platform,
   label,
   small,
+  href,
 }: {
   platform: "ios" | "android";
   label: string;
   small: string;
+  href?: string;
 }) {
+  const isAvailable = !!href;
+  const Tag = isAvailable ? "a" : "button";
+  const props = isAvailable
+    ? { href, target: "_blank", rel: "noopener noreferrer" }
+    : { type: "button" as const, disabled: true };
+
   return (
-    <button
-      type="button"
-      disabled
-      className="group inline-flex items-center gap-3 h-14 pl-4 pr-6 rounded-full bg-paper/[0.05] hover:bg-paper/[0.08] ring-1 ring-paper/15 hover:ring-paper/25 transition-all duration-300 disabled:cursor-not-allowed"
+    <Tag
+      {...(props as any)}
+      className={`group inline-flex items-center gap-3 h-14 pl-4 pr-6 rounded-full bg-paper/[0.05] ring-1 ring-paper/15 transition-all duration-300 ${
+        isAvailable
+          ? "hover:bg-paper/[0.12] hover:ring-paper/30 hover:scale-[1.02] cursor-pointer"
+          : "opacity-60 cursor-not-allowed"
+      }`}
     >
       <span className="flex items-center justify-center w-8 h-8 text-paper">
         {platform === "ios" ? (
@@ -148,6 +160,6 @@ function StoreButton({
         <span className="text-[10px] uppercase tracking-wider text-paper/40 mb-1">{small}</span>
         <span className="text-[14px] font-medium text-paper">{label}</span>
       </span>
-    </button>
+    </Tag>
   );
 }

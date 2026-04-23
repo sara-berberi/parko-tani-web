@@ -355,8 +355,7 @@ body {
     <div class="phone-area">
       <div class="phone-frame">
         <div class="phone-screen" id="ph1">
-          <div class="ph-icon">📸</div>
-          <div class="ph-text">Ngarko Image 1<br/>(harta + rezervo)</div>
+          <img src="./public/launches/13.jpeg" alt="Slide 1"/>
         </div>
       </div>
     </div>
@@ -384,8 +383,7 @@ body {
     <div class="phone-area">
       <div class="phone-frame">
         <div class="phone-screen" id="ph2">
-          <div class="ph-icon">📸</div>
-          <div class="ph-text">Ngarko Image 2<br/>(Blloku parking detail)</div>
+          <img src="./public/launches/3.jpeg" alt="Slide 2"/>
         </div>
       </div>
     </div>
@@ -413,8 +411,7 @@ body {
     <div class="phone-area">
       <div class="phone-frame">
         <div class="phone-screen" id="ph3">
-          <div class="ph-icon">📸</div>
-          <div class="ph-text">Ngarko Image 3<br/>(Konfirmo Mbërritjen)</div>
+          <img src="./public/launches/7.jpeg" alt="Slide 3"/>
         </div>
       </div>
     </div>
@@ -441,8 +438,7 @@ body {
     <div class="phone-area">
       <div class="phone-frame">
         <div class="phone-screen" id="ph4">
-          <div class="ph-icon">📸</div>
-          <div class="ph-text">Ngarko Image 4<br/>(Rezervimet screen)</div>
+          <img src="./public/launches/1.jpeg" alt="Slide 4"/>
         </div>
       </div>
     </div>
@@ -470,8 +466,7 @@ body {
     <div class="phone-area">
       <div class="phone-frame">
         <div class="phone-screen" id="ph5">
-          <div class="ph-icon">📸</div>
-          <div class="ph-text">Ngarko Image 5<br/>(Prano/Refuzo screen)</div>
+          <img src="./public/launches/8.jpeg" alt="Slide 5"/>
         </div>
       </div>
     </div>
@@ -505,6 +500,73 @@ document.querySelectorAll('.phone-screen').forEach(ph => {
     inp.click();
   });
 });
+
+// Export mode: ?export in URL
+// Renders each slide scaled to 1290×2796 for App Store screenshots.
+// Use Chrome DevTools "Capture node screenshot" on each .export-page.
+if (location.search.includes('export')) {
+  const params = new URLSearchParams(location.search);
+  const TARGET_W = parseInt(params.get('w')) || 1290;
+  const TARGET_H = parseInt(params.get('h')) || 2796;
+
+  // Hide normal layout
+  document.body.style.cssText = 'margin:0;padding:0;background:transparent;display:block;';
+
+  // Remove the feature graphic wrap (first .wrap)
+  const featureWrap = document.querySelector('.wrap');
+  if (featureWrap) featureWrap.remove();
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+
+  slides.forEach((slide, i) => {
+    const naturalW = slide.offsetWidth;
+    const naturalH = slide.offsetHeight;
+
+    // Fit slide inside TARGET box without distortion:
+    // scale by width, but if that makes it taller than TARGET_H, scale by height instead.
+    const scaleByW = TARGET_W / naturalW;
+    const scaleByH = TARGET_H / naturalH;
+    const scale = Math.min(scaleByW, scaleByH);
+
+    const scaledW = naturalW * scale;
+    const scaledH = naturalH * scale;
+
+    // Center the slide within the target canvas
+    const offsetX = (TARGET_W - scaledW) / 2;
+    const offsetY = (TARGET_H - scaledH) / 2;
+
+    const page = document.createElement('div');
+    page.className = 'export-page';
+    page.id = `export-${i + 1}`;
+    page.style.cssText = `
+      width:${TARGET_W}px;
+      height:${TARGET_H}px;
+      overflow:hidden;
+      position:relative;
+      background:transparent;
+    `;
+
+    const scaledWrap = document.createElement('div');
+    scaledWrap.style.cssText = `
+      width:${naturalW}px;
+      height:${naturalH}px;
+      transform:scale(${scale});
+      transform-origin:top left;
+      position:absolute;
+      top:${offsetY}px;
+      left:${offsetX}px;
+    `;
+
+    slide.parentElement.removeChild(slide);
+    scaledWrap.appendChild(slide);
+    page.appendChild(scaledWrap);
+    document.body.appendChild(page);
+  });
+
+  // Remove any leftover .wrap elements
+  document.querySelectorAll('.wrap').forEach(w => w.remove());
+
+}
 </script>
 </body>
 </html>
