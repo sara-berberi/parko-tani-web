@@ -12,20 +12,27 @@ import {
 import { useLanguage } from "@/i18n/LanguageContext";
 import { CityScene } from "./CityScene";
 import { JourneyHUD } from "./JourneyHUD";
+import { useIsMobile } from "./useIsMobile";
 
-/* Each act owns a slice of the scroll timeline. The copy fades in
-   just after its camera move begins, and out just before the next. */
+/* Each act owns a slice of the scroll timeline. The copy fades in just after
+   its camera move begins, and out just before the next one starts.
+
+   The last act deliberately runs past 1.0: its fade-out would otherwise land
+   while the section is still pinned on screen, leaving the reader staring at
+   a captionless map for the final stretch of scroll. Overshooting keeps
+   "Parkove." on screen until the section itself scrolls away. */
 const ACT_WINDOWS: [number, number][] = [
   [0.0, 0.2],
   [0.22, 0.42],
   [0.44, 0.58],
   [0.6, 0.8],
-  [0.82, 1.0],
+  [0.82, 1.35],
 ];
 
 export function Journey() {
   const { t } = useLanguage();
   const reduced = useReducedMotion();
+  const isMobile = useIsMobile();
   const ref = useRef<HTMLDivElement>(null);
   const j = t.journey;
 
@@ -41,41 +48,57 @@ export function Journey() {
     restDelta: 0.0005,
   });
 
+  /* Phones get a much shorter pin. At 560vh a phone user scrolls ~5.6 screens
+     through a scene that changes slowly — it reads as "stuck". Less scroll per
+     act keeps the story moving at thumb speed. */
+  const height = reduced ? "auto" : isMobile ? "360vh" : "560vh";
+
   return (
     <section
       id="journey"
       ref={ref}
       className="relative bg-paper-200"
-      /* 5 acts × ~1 viewport of scroll each, plus room to settle. */
-      style={{ height: reduced ? "auto" : "560vh" }}
+      style={{ height }}
     >
-      {/* ── The pinned stage ── */}
+      {/* ── The pinned stage ──
+          Mobile stacks: map on top, copy card below. Desktop overlays them. */}
       <div className="journey-stage sticky top-0 h-screen overflow-hidden">
         {/* City */}
         <div className="absolute inset-0">
-          <CityScene progress={progress} />
+          <CityScene progress={progress} isMobile={isMobile} />
         </div>
 
-        {/* Vignette — pushes the eye toward the centre, keeps text legible */}
+        {/* Vignette — just enough to settle the frame edges. Kept light: with
+            the scrim below, anything stronger bleaches the city to nothing. */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(120% 90% at 50% 50%, rgba(246,245,240,0) 38%, rgba(246,245,240,0.55) 78%, rgba(246,245,240,0.9) 100%)",
-          }}
-        />
-        {/* Left scrim so copy always sits on a calm ground */}
-        <div
-          className="absolute inset-y-0 left-0 w-full lg:w-[62%] pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(246,245,240,0.96) 0%, rgba(246,245,240,0.88) 40%, rgba(246,245,240,0) 100%)",
+              "radial-gradient(130% 100% at 55% 50%, rgba(246,245,240,0) 55%, rgba(246,245,240,0.35) 88%, rgba(246,245,240,0.7) 100%)",
           }}
         />
 
-        {/* Copy panels */}
-        <div className="relative h-full container-x flex items-center">
-          <div className="relative w-full max-w-[520px]">
+        {/* The scrim the copy sits on. On desktop it comes in from the left
+            (copy is a left column); on mobile from the bottom (copy is a card),
+            because a left-scrim on a 390px screen just fogs the entire map. */}
+        <div
+          className="absolute inset-0 pointer-events-none lg:hidden"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(246,245,240,0) 30%, rgba(246,245,240,0.72) 46%, rgba(246,245,240,0.96) 58%, rgba(246,245,240,0.99) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-y-0 left-0 w-[52%] pointer-events-none hidden lg:block"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(246,245,240,0.97) 0%, rgba(246,245,240,0.94) 45%, rgba(246,245,240,0.6) 75%, rgba(246,245,240,0) 100%)",
+          }}
+        />
+
+        {/* Copy — bottom card on mobile, left column on desktop */}
+        <div className="relative h-full container-x flex items-end lg:items-center pb-10 lg:pb-0">
+          <div className="relative w-full max-w-[520px] h-[46%] lg:h-auto">
             {j.acts.map((act, i) => (
               <ActPanel
                 key={i}
@@ -134,24 +157,25 @@ function ActPanel({
   return (
     <motion.div
       style={{ opacity, y }}
-      className="journey-act absolute inset-x-0 top-1/2 -translate-y-1/2"
+      /* Mobile: pinned to the bottom of the copy card. Desktop: centred in the
+         left column. */
+      className="journey-act absolute inset-x-0 bottom-0 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2"
     >
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex items-center gap-3 mb-4 lg:mb-6">
         <span className="font-display font-extrabold text-[13px] text-ocean tabular-nums">
           {act.step}
         </span>
         <span className="block w-6 h-px bg-ink-300" />
-        <span className="text-[11px] font-medium tracking-[0.18em] uppercase text-ink-500">
+        <span className="text-[10px] lg:text-[11px] font-medium tracking-[0.18em] uppercase text-ink-500">
           {act.eyebrow}
         </span>
       </div>
 
-      <h2 className="display text-[38px] sm:text-[52px] lg:text-[60px] leading-[1.0] tracking-[-0.03em] mb-6">
-        {act.title}{" "}
-        <span className="text-ocean">{act.titleAccent}</span>
+      <h2 className="display text-[32px] sm:text-[44px] lg:text-[60px] leading-[1.02] tracking-[-0.03em] mb-4 lg:mb-6">
+        {act.title} <span className="text-ocean">{act.titleAccent}</span>
       </h2>
 
-      <p className="text-[16px] lg:text-[18px] text-ink-500 leading-[1.6] max-w-md">
+      <p className="text-[15px] lg:text-[18px] text-ink-500 leading-[1.55] lg:leading-[1.6] max-w-md">
         {act.body}
       </p>
     </motion.div>

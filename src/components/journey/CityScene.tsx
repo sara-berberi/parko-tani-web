@@ -1,7 +1,12 @@
 "use client";
 
-import { motion, MotionValue, useTransform } from "framer-motion";
-import { useMemo } from "react";
+import {
+  motion,
+  MotionValue,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useMemo } from "react";
 
 /* ──────────────────────────────────────────────────────────────
    A stylized Tirana, hand-drawn in SVG.
@@ -52,34 +57,70 @@ interface CameraKey {
   zoom: number;
 }
 
-/* The camera choreography. Each act gets its own framing. */
+/* The camera choreography. Each act gets its own framing.
+
+   With `slice`, zoom ~0.75 shows the whole city on a 16:9 screen. The copy
+   owns the left ~45% of the viewport, so focus points sit right-of-centre
+   (higher x) to keep the action out from behind the text. */
 const CAMERA: CameraKey[] = [
-  { at: 0.0, x: 470, y: 600, zoom: 2.1 }, // tight on the circling car
-  { at: 0.2, x: 470, y: 580, zoom: 1.9 },
-  { at: 0.36, x: 520, y: 500, zoom: 1.0 }, // pull back — the whole city
-  { at: 0.52, x: 660, y: 470, zoom: 1.35 }, // drift toward the free spot
-  { at: 0.68, x: 640, y: 500, zoom: 1.25 }, // route draws
-  { at: 0.86, x: 742, y: 430, zoom: 2.6 }, // dive onto the spot
-  { at: 1.0, x: 742, y: 424, zoom: 3.0 },
+  { at: 0.0, x: 400, y: 640, zoom: 1.35 }, // in on the circling car
+  { at: 0.2, x: 420, y: 610, zoom: 1.25 },
+  { at: 0.38, x: 560, y: 520, zoom: 0.78 }, // pull back — the whole city
+  { at: 0.52, x: 700, y: 460, zoom: 1.0 }, // drift toward the free spot
+  { at: 0.68, x: 660, y: 520, zoom: 0.95 }, // route draws, both ends visible
+  { at: 0.88, x: 760, y: 440, zoom: 1.8 }, // dive onto the spot
+  { at: 1.0, x: 748, y: 425, zoom: 2.1 },
 ];
 
 function keys<K extends keyof CameraKey>(k: K) {
   return CAMERA.map((c) => c[k]);
 }
 
-export function CityScene({ progress }: { progress: MotionValue<number> }) {
+export function CityScene({
+  progress,
+  isMobile = false,
+}: {
+  progress: MotionValue<number>;
+  isMobile?: boolean;
+}) {
   const stops = CAMERA.map((c) => c.at);
 
   const camX = useTransform(progress, stops, keys("x"));
   const camY = useTransform(progress, stops, keys("y"));
-  const zoom = useTransform(progress, stops, keys("zoom"));
+  const zoomBase = useTransform(progress, stops, keys("zoom"));
 
-  /* Centre the focus point, then scale about it. */
+  /* isMobile has to be a MotionValue, not a captured boolean.
+
+     useTransform builds its closure once and only re-runs when an *input
+     MotionValue* changes — a plain prop flipping false→true after mount (which
+     is exactly what useIsMobile does) never retriggers it, so the mobile
+     framing silently never applied. Feeding it through a MotionValue puts it
+     in the reactive graph. */
+  const mobile = useMotionValue(isMobile ? 1 : 0);
+  useEffect(() => {
+    mobile.set(isMobile ? 1 : 0);
+  }, [isMobile, mobile]);
+
+  /* Phones are tall and narrow, and the bottom ~46% is the copy card. So we
+     pull the camera back and aim it at the upper part of the frame, otherwise
+     the action (the free spot, the car) sits behind the text. */
   const transform = useTransform(
-    [camX, camY, zoom] as const,
-    ([x, y, z]: number[]) => {
-      const c = WORLD / 2;
-      return `translate(${c} ${c}) scale(${z}) translate(${-x} ${-y})`;
+    [camX, camY, zoomBase, mobile] as const,
+    ([x, y, z, m]: number[]) => {
+      const isMobile = m === 1;
+      /* Where on screen the focus point should land.
+
+         Desktop: dead centre — the left scrim handles the copy.
+         Mobile: high (copy card owns the bottom ~46%) and left of centre,
+         because the phone HUD sits top-right. Without the x-shift the whole
+         payoff — the green spot, the car arriving — lands under the HUD or
+         off the right edge, which is exactly what made the story feel like
+         nothing was happening. */
+      const anchorX = isMobile ? WORLD * 0.36 : WORLD / 2;
+      const anchorY = isMobile ? WORLD * 0.3 : WORLD / 2;
+      const zoom = isMobile ? z * 0.6 : z;
+
+      return `translate(${anchorX} ${anchorY}) scale(${zoom}) translate(${-x} ${-y})`;
     }
   );
 
@@ -117,14 +158,26 @@ export function CityScene({ progress }: { progress: MotionValue<number> }) {
       viewBox={`0 0 ${WORLD} ${WORLD}`}
       className="w-full h-full"
       aria-hidden="true"
+      /* `slice` fills the frame edge-to-edge (with `meet` the square world
+         letterboxes into a wide viewport and you see the map's edges floating
+         in empty paper). It crops the square to the viewport's aspect, so the
+         zoom values in CAMERA are calibrated against the *height*. */
       preserveAspectRatio="xMidYMid slice"
     >
       <defs>
         <SceneDefs />
       </defs>
 
-      {/* Ground */}
-      <rect width={WORLD} height={WORLD} fill="#eceae1" />
+      {/* Ground. Deliberately far larger than the world: `meet` letterboxes the
+          square world in a wide viewport, and zooming out past 1 exposes even
+          more, so the ground has to outrun both. */}
+      <rect
+        x={-WORLD}
+        y={-WORLD}
+        width={WORLD * 3}
+        height={WORLD * 3}
+        fill="#e4e1d6"
+      />
 
       <motion.g className="journey-camera" style={{ transform } as never}>
         {/* Faint survey grid — reads as "map" without shouting */}
@@ -298,7 +351,9 @@ function CityBlocks() {
         strokeLinecap="round"
       />
 
-      {/* Buildings */}
+      {/* Buildings. The varied fill is what stops the grid reading as graph
+          paper — it gives the blocks weight and makes the streets negative
+          space rather than just gaps. */}
       {blocks.map((b, i) => (
         <rect
           key={i}
@@ -308,7 +363,7 @@ function CityBlocks() {
           height={b.h}
           rx={4}
           fill="#0b1220"
-          fillOpacity={i % 3 === 0 ? 0.07 : i % 2 === 0 ? 0.05 : 0.035}
+          fillOpacity={i % 3 === 0 ? 0.14 : i % 2 === 0 ? 0.1 : 0.07}
         />
       ))}
     </g>

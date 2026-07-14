@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion, MotionValue, useTransform } from "framer-motion";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -11,18 +12,34 @@ import { useLanguage } from "@/i18n/LanguageContext";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+/* The screen UI is authored once at this size, then scaled to fit the shell. */
+const DESIGN_W = 236;
+const DESIGN_H = 511;
+
 export function JourneyHUD({ progress }: { progress: MotionValue<number> }) {
   const { t } = useLanguage();
   const j = t.journey;
 
-  // The phone rises into frame when the driver "opens the app".
-  const phoneIn = useTransform(progress, [0.26, 0.38], [0, 1]);
+  /* Measure the shell so the screen contents can scale to it. */
+  const shellRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const el = shellRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      /* contentRect already excludes the bezel padding, so this is the width
+         of the glass itself. */
+      setScale(entry.contentRect.width / DESIGN_W);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // The phone rises into frame when the driver "opens the app", and stays put:
+  // it holds the "parked" confirmation until the section scrolls away.
+  const opacity = useTransform(progress, [0.26, 0.38], [0, 1]);
   const phoneY = useTransform(progress, [0.26, 0.38], [40, 0]);
-  const phoneOut = useTransform(progress, [0.93, 1], [1, 0]);
-  const opacity = useTransform(
-    [phoneIn, phoneOut] as const,
-    ([a, b]: number[]) => a * b
-  );
 
   // Beat 1: searching / scanning
   const searching = useTransform(progress, [0.3, 0.38, 0.46, 0.52], [0, 1, 1, 0]);
@@ -40,45 +57,73 @@ export function JourneyHUD({ progress }: { progress: MotionValue<number> }) {
   return (
     <motion.div
       style={{ opacity, y: phoneY }}
-      className="pointer-events-none absolute right-6 xl:right-12 top-1/2 -translate-y-1/2 z-20 hidden lg:block"
+      /* Visible on every size. The phone IS the product — hiding it on mobile
+         (where most people will actually see this) guts the story. On small
+         screens it tucks into the top-right of the map, above the copy card;
+         on desktop it stands beside the copy. */
+      className="pointer-events-none absolute z-20
+                 -right-6 top-[10%]
+                 lg:right-6 xl:right-12 lg:top-1/2 lg:-translate-y-1/2"
     >
+      {/* Height-capped, not width-capped: a 9:19.5 phone at a fixed width
+          overflows short viewports. Driving it from height keeps the whole
+          device on screen at every size. */}
       <div
-        className="relative w-[248px] rounded-[38px] p-[6px]"
-        style={{
-          aspectRatio: "9 / 19.5",
-          background: "linear-gradient(180deg, #1c1c1e 0%, #0a0a0f 100%)",
-          boxShadow:
-            "0 50px 90px -28px rgba(11,18,32,0.42), 0 18px 36px -18px rgba(11,18,32,0.26), 0 0 0 1.5px rgba(255,255,255,0.1)",
-        }}
+        ref={shellRef}
+        className="relative rounded-[26px] lg:rounded-[38px] p-[4px] lg:p-[6px]
+                   h-[min(34vh,240px)] lg:h-[min(72vh,540px)]"
+        style={
+          {
+            aspectRatio: "9 / 19.5",
+            background: "linear-gradient(180deg, #1c1c1e 0%, #0a0a0f 100%)",
+            boxShadow:
+              "0 50px 90px -28px rgba(11,18,32,0.42), 0 18px 36px -18px rgba(11,18,32,0.26), 0 0 0 1.5px rgba(255,255,255,0.1)",
+            "--phone-scale": scale,
+          } as React.CSSProperties
+        }
       >
         {/* Dynamic Island */}
         <div
-          className="absolute top-[10px] left-1/2 -translate-x-1/2 z-30 bg-black rounded-full"
-          style={{ width: "34%", height: 22 }}
+          className="absolute top-[8px] lg:top-[10px] left-1/2 -translate-x-1/2 z-30 bg-black rounded-full"
+          style={{ width: "34%", height: "4%" }}
         />
 
-        {/* Screen */}
+        {/* Screen.
+
+            The UI inside is authored once at a fixed 248×537 "design size" and
+            then scaled to whatever the shell actually is. Without this, the
+            8–13px labels would need a second set of sizes for the small phone
+            and would still overflow — one transform beats a dozen breakpoints. */}
         <div
-          className="relative w-full h-full overflow-hidden bg-[#eef2f7]"
-          style={{ borderRadius: 32 }}
+          className="relative w-full h-full overflow-hidden bg-[#eef2f7] rounded-[22px] lg:rounded-[32px]"
         >
-          <ScreenChrome />
+          <div
+            className="absolute top-0 left-0 origin-top-left"
+            style={{
+              width: DESIGN_W,
+              height: DESIGN_H,
+              // container width ÷ design width, via a CSS var set by the shell
+              transform: "scale(var(--phone-scale))",
+            }}
+          >
+            <ScreenChrome />
 
-          <Panel opacity={searching}>
-            <SearchingScreen label={j.acts[1].eyebrow} />
-          </Panel>
+            <Panel opacity={searching}>
+              <SearchingScreen label={j.acts[1].eyebrow} />
+            </Panel>
 
-          <Panel opacity={found}>
-            <FoundScreen />
-          </Panel>
+            <Panel opacity={found}>
+              <FoundScreen />
+            </Panel>
 
-          <Panel opacity={reserving}>
-            <ReservingScreen />
-          </Panel>
+            <Panel opacity={reserving}>
+              <ReservingScreen />
+            </Panel>
 
-          <Panel opacity={arrived}>
-            <ArrivedScreen />
-          </Panel>
+            <Panel opacity={arrived}>
+              <ArrivedScreen />
+            </Panel>
+          </div>
         </div>
       </div>
     </motion.div>
