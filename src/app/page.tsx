@@ -1,8 +1,9 @@
 "use client";
 
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/sections/Hero";
-import { HowItWorks } from "@/components/sections/HowItWorks";
+import { JourneyIntro } from "@/components/journey/JourneyIntro";
+import { Journey } from "@/components/journey/Journey";
+import { JourneyOutro } from "@/components/journey/JourneyOutro";
 import { LaunchesTop } from "@/components/sections/Launches";
 import { AppScreenshots } from "@/components/sections/AppScreenshots";
 import { ForBusinesses } from "@/components/sections/ForBusinesses";
@@ -15,8 +16,11 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        <Hero />
-        <HowItWorks />
+        {/* The drive: title card → pinned scroll story → landing */}
+        <JourneyIntro />
+        <Journey />
+        <JourneyOutro />
+
         <LaunchesTop />
         <AppScreenshots />
         <ForBusinesses />

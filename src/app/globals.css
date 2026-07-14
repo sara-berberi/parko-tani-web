@@ -6,7 +6,9 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* NB: no `scroll-behavior: smooth` here. It fights the scroll-linked
+       camera in <Journey />, making anchor jumps scrub the whole story.
+       Anchors opt in individually via .scroll-smooth-anchor instead. */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -88,3 +90,24 @@
 ::-webkit-scrollbar-thumb:hover { background: rgba(11,18,32,0.28); background-clip: padding-box; border: 3px solid transparent; }
 
 * { -webkit-tap-highlight-color: transparent; }
+
+/* ── Journey ───────────────────────────────────────────────
+   The camera <g> is transformed every frame; promote it once
+   rather than letting the compositor re-decide each tick. */
+.journey-camera { will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  /* Un-pin the story: the section collapses to auto height (set in
+     Journey.tsx) and the acts stack as ordinary, readable blocks. */
+  .journey-stage {
+    position: static;
+    height: auto;
+    padding-block: 6rem;
+  }
+  .journey-act {
+    position: static;
+    transform: none !important;
+    opacity: 1 !important;
+    margin-bottom: 4rem;
+  }
+}

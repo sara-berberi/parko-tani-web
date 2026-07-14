@@ -32,6 +32,63 @@
     "one": "1 vend",
     "full": "plot"
   },
+  "journey": {
+    "badge": "Tirana · Shqipëri",
+    "headline1": "S'ka më",
+    "headline2": "xhiro kot.",
+    "subtitle": "Rrëshqit poshtë dhe shiko si një ditë në Tiranë bëhet më e thjeshtë, nga kërkimi për parkim deri te gjetja e vendit tënd.",
+    "scrollHint": "Rrëshqit për të parë si funksionon",
+    "cta": "Shkarko Falas",
+    "acts": [
+      {
+        "step": "01",
+        "eyebrow": "18:42 · Rr. e Kavajës",
+        "title": "Edhe një xhiro.",
+        "titleAccent": "Asnjë vend.",
+        "body": "E njeh situatën. Kalon në të njëjtat rrugë, kontrollon çdo cep dhe koha vazhdon të ikë. Në Tiranë, gjetja e parkimit shpesh fillon para se të arrish destinacionin."
+      },
+      {
+        "step": "02",
+        "eyebrow": "Hap Parko Tani",
+        "title": "Tani e sheh",
+        "titleAccent": "çfarë ke pranë.",
+        "body": "Harta të tregon vendet e parkimit rreth teje dhe gjendjen e tyre në kohë reale. Shiko opsionet e lira dhe zgjidh atë që të përshtatet."
+      },
+      {
+        "step": "03",
+        "eyebrow": "Rr. Ibrahim Rugova · 240 m",
+        "title": "Një vend",
+        "titleAccent": "është gati për ty.",
+        "body": "Një vend i lirë shfaqet në aplikacion sapo bëhet i disponueshëm. Ti e sheh menjëherë dhe e ke më të lehtë të vendosësh ku të parkosh."
+      },
+      {
+        "step": "04",
+        "eyebrow": "Rezervimi · 30 sekonda",
+        "title": "Rezervo",
+        "titleAccent": "dhe vazhdo rrugën.",
+        "body": "Zgjidh vendin, konfirmo rezervimin dhe ndiq drejtimin për aty. Më pak kohë duke kërkuar, më shumë kohë për atë që të pret."
+      },
+      {
+        "step": "05",
+        "eyebrow": "Mbërritja · 18:47",
+        "title": "Parkove.",
+        "titleAccent": "Pa humbur kohë.",
+        "body": "Mbërrin direkt te vendi që zgjodhe dhe vazhdon ditën pa xhiro të panevojshme nëpër qytet."
+      }
+    ],
+    "outro": {
+      "eyebrow": "Më pak kërkim",
+      "title": "Dita jote",
+      "titleAccent": "fillon më shpejt.",
+      "body": "Shkarko Parko Tani dhe gjej parkimin më lehtë në Tiranë.",
+      "statTime": "5 min",
+      "statTimeLabel": "nga kërkimi te parkimi",
+      "statSpots": "500+",
+      "statSpotsLabel": "vende të shfaqura në Tiranë",
+      "statLive": "Live",
+      "statLiveLabel": "informacion në kohë reale"
+    }
+  },
   "howItWorks": {
     "eyebrow": "Si funksionon",
     "title": "Parko me zgjuarsi",

@@ -7,7 +7,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const navLinks = [
-  { key: "howItWorks", href: "#how-it-works" },
+  { key: "howItWorks", href: "#journey" },
   { key: "features", href: "#app" },
   { key: "business", href: "#business" },
 ] as const;

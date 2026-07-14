@@ -32,6 +32,63 @@
     "one": "1 spot",
     "full": "full"
   },
+  "journey": {
+    "badge": "Tirana · Albania",
+    "headline1": "No more",
+    "headline2": "driving in circles.",
+    "subtitle": "Scroll down and follow a single drive through Tirana — from circling the block to pulling into a spot that was already yours.",
+    "scrollHint": "Scroll to begin the journey",
+    "cta": "Download Free",
+    "acts": [
+      {
+        "step": "01",
+        "eyebrow": "18:42 · Rruga e Kavajës",
+        "title": "Fourth lap.",
+        "titleAccent": "Still nothing.",
+        "body": "You know the feeling. The same streets on repeat, eyes scanning the curb, minutes evaporating. In Tirana, the search for parking eats your evening before it starts."
+      },
+      {
+        "step": "02",
+        "eyebrow": "Open Parko Tani",
+        "title": "The city opens",
+        "titleAccent": "in front of you.",
+        "body": "One tap and the map breathes. Every parking spot around you, mapped and updated live. Red is taken. Green is waiting for you."
+      },
+      {
+        "step": "03",
+        "eyebrow": "Rr. Ibrahim Rugova · 240 m",
+        "title": "A spot",
+        "titleAccent": "just opened.",
+        "body": "You see it first, because the owner freed it in the app the second they pulled out. No guessing. No hoping. A real, open spot — 240 metres away."
+      },
+      {
+        "step": "04",
+        "eyebrow": "Reservation · 30 seconds",
+        "title": "Reserve it,",
+        "titleAccent": "and it's yours.",
+        "body": "Tap. Confirm. The spot locks under your name and the route draws itself toward it. Nobody can take it while you're on your way."
+      },
+      {
+        "step": "05",
+        "eyebrow": "Arrival · 18:47",
+        "title": "Parked.",
+        "titleAccent": "Five minutes.",
+        "body": "You didn't search. You arrived. The car slides into the space that was holding itself for you, and your evening picks up where it should — not on lap five."
+      }
+    ],
+    "outro": {
+      "eyebrow": "End of the drama",
+      "title": "Your next drive",
+      "titleAccent": "starts parked.",
+      "body": "Download Parko Tani and stop beginning your day with a search.",
+      "statTime": "5 min",
+      "statTimeLabel": "from searching to parked",
+      "statSpots": "500+",
+      "statSpotsLabel": "spots mapped across Tirana",
+      "statLive": "Live",
+      "statLiveLabel": "real-time availability"
+    }
+  },
   "howItWorks": {
     "eyebrow": "How it works",
     "title": "Park smarter",
